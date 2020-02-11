@@ -1,6 +1,4 @@
-#install.packages(c("tidyverse","rtweet","quanteda","stringr", "RColorBrewer"))
-
-#nstall.packages("tidytext")
+#install.packages(c("tidyverse","rtweet","quanteda","stringr", "RColorBrewer","tidytext"))
 
 library(tidyverse)
 library(rtweet)
