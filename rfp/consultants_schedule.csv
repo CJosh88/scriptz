@@ -1,0 +1,101 @@
+Consultant ID,Name,Level,Skillset,Main Skills,February 2024,March 2024,April 2024,May 2024,June 2024,July 2024,August 2024,September 2024,October 2024,November 2024,December 2024
+1,Lindsey Wood,2,Software Development,"Version Control, Python, Software Design Patterns, Java, C#",61/99,27/133,120/40,118/42,53/107,63/97,93/67,90/70,12/148,137/23,66/94
+2,Justin Thomas,4,Cybersecurity,"Incident Response, Network Security, Threat Analysis, Cryptography, Compliance",90/70,15/145,54/106,69/91,6/154,154/6,68/92,110/50,128/32,127/33,82/78
+3,Amanda Medina,5,Cloud Computing,"GCP, Azure, Cloud Architecture, DevOps, AWS",132/28,17/143,111/49,74/86,153/7,38/122,66/94,11/149,41/119,19/141,120/40
+4,Samuel Hernandez,1,Software Development,"Software Design Patterns, Java, C#, Python, Version Control",0/160,80/80,97/63,142/18,65/95,70/90,24/136,120/40,119/41,141/19,132/28
+5,Chase Johnson,1,Software Development,"Version Control, C#, Python, Java, Software Design Patterns",124/36,40/120,90/70,116/44,115/45,18/142,21/139,123/37,100/60,142/18,15/145
+6,Calvin Singleton,3,Cybersecurity,"Compliance, Cryptography, Incident Response, Network Security, Threat Analysis",17/143,139/21,17/143,136/24,19/141,54/106,159/1,125/35,134/26,70/90,73/87
+7,Laura Carrillo,4,Cybersecurity,"Threat Analysis, Network Security, Compliance, Cryptography, Incident Response",69/91,7/153,144/16,72/88,125/35,42/118,18/142,47/113,23/137,44/116,109/51
+8,Tracy Acosta,5,Software Development,"Python, Java, C#, Software Design Patterns, Version Control",72/88,139/21,110/50,151/9,124/36,130/30,94/66,156/4,49/111,131/29,99/61
+9,Cindy Collins,2,Data Science,"Data Visualization, Machine Learning, R, Statistical Analysis, Python",118/42,30/130,37/123,78/82,133/27,18/142,96/64,20/140,141/19,111/49,9/151
+10,Alyssa Johnson,3,Project Management,"Project Scheduling, Risk Management, Stakeholder Management, Agile Methodologies, Scrum",54/106,85/75,38/122,60/100,142/18,74/86,110/50,111/49,4/156,124/36,52/108
+11,Benjamin Jackson,2,Software Development,"Java, Python, Version Control, Software Design Patterns, C#",121/39,80/80,117/43,81/79,31/129,69/91,38/122,30/130,41/119,64/96,133/27
+12,Brendan Powell,2,Cybersecurity,"Compliance, Network Security, Threat Analysis, Incident Response, Cryptography",89/71,99/61,15/145,133/27,136/24,47/113,12/148,45/115,130/30,121/39,26/134
+13,Timothy Carson,5,Machine Learning,"Python, TensorFlow, Scikit-learn, Deep Learning, PyTorch",111/49,158/2,34/126,13/147,17/143,1/159,45/115,144/16,140/20,110/50,87/73
+14,William Case,3,Project Management,"Scrum, Stakeholder Management, Risk Management, Project Scheduling, Agile Methodologies",3/157,146/14,84/76,29/131,62/98,39/121,62/98,155/5,97/63,108/52,159/1
+15,Tiffany Hubbard,5,Machine Learning,"PyTorch, Python, Scikit-learn, Deep Learning, TensorFlow",51/109,151/9,123/37,10/150,119/41,147/13,87/73,10/150,121/39,75/85,52/108
+16,Justin Byrd,4,Software Development,"Python, C#, Java, Software Design Patterns, Version Control",139/21,117/43,100/60,93/67,118/42,158/2,126/34,42/118,74/86,123/37,18/142
+17,Timothy Huffman,2,Software Development,"Java, C#, Software Design Patterns, Version Control, Python",119/41,116/44,56/104,26/134,50/110,138/22,132/28,143/17,57/103,21/139,100/60
+18,Melissa Webster,3,Project Management,"Agile Methodologies, Project Scheduling, Stakeholder Management, Risk Management, Scrum",147/13,6/154,1/159,36/124,113/47,128/32,160/0,78/82,42/118,151/9,135/25
+19,Paul Espinoza,2,Cybersecurity,"Compliance, Incident Response, Cryptography, Threat Analysis, Network Security",46/114,114/46,74/86,45/115,4/156,83/77,131/29,133/27,103/57,89/71,101/59
+20,Wayne Wilson,2,Software Development,"Version Control, Java, Software Design Patterns, Python, C#",86/74,81/79,50/110,149/11,33/127,131/29,90/70,101/59,118/42,146/14,59/101
+21,Andrew Moreno,3,Project Management,"Agile Methodologies, Risk Management, Scrum, Stakeholder Management, Project Scheduling",20/140,16/144,41/119,79/81,11/149,122/38,62/98,14/146,143/17,27/133,108/52
+22,Leah Pitts,3,Machine Learning,"Python, Scikit-learn, PyTorch, TensorFlow, Deep Learning",93/67,82/78,109/51,54/106,145/15,113/47,107/53,134/26,13/147,18/142,65/95
+23,Taylor Barnett,2,Cybersecurity,"Threat Analysis, Cryptography, Incident Response, Network Security, Compliance",113/47,2/158,102/58,49/111,126/34,70/90,18/142,158/2,123/37,49/111,114/46
+24,Kathryn Osborne,4,Project Management,"Agile Methodologies, Scrum, Risk Management, Stakeholder Management, Project Scheduling",131/29,22/138,151/9,44/116,133/27,121/39,123/37,0/160,50/110,106/54,140/20
+25,Sherry Potter,5,Cybersecurity,"Incident Response, Network Security, Compliance, Threat Analysis, Cryptography",15/145,108/52,14/146,60/100,45/115,113/47,146/14,32/128,20/140,64/96,77/83
+26,Gary Hall,1,Software Development,"Java, Python, Version Control, C#, Software Design Patterns",80/80,49/111,155/5,84/76,81/79,120/40,106/54,72/88,6/154,79/81,71/89
+27,Michael Owens,1,Cloud Computing,"GCP, Azure, AWS, DevOps, Cloud Architecture",1/159,1/159,22/138,131/29,10/150,56/104,82/78,30/130,83/77,86/74,113/47
+28,Stephen Nielsen,2,Project Management,"Stakeholder Management, Risk Management, Project Scheduling, Agile Methodologies, Scrum",4/156,77/83,67/93,146/14,56/104,90/70,92/68,152/8,1/159,77/83,88/72
+29,Carolyn Warren,1,Data Science,"Statistical Analysis, Data Visualization, Machine Learning, R, Python",142/18,160/0,38/122,122/38,138/22,86/74,18/142,27/133,30/130,83/77,55/105
+30,Rita Patterson,2,Machine Learning,"PyTorch, Scikit-learn, Deep Learning, TensorFlow, Python",22/138,70/90,114/46,130/30,64/96,121/39,5/155,44/116,60/100,129/31,143/17
+31,Brian Jones,2,Cybersecurity,"Network Security, Incident Response, Threat Analysis, Cryptography, Compliance",112/48,95/65,44/116,42/118,117/43,53/107,7/153,61/99,100/60,111/49,27/133
+32,Eric Warren,4,Data Science,"Statistical Analysis, Data Visualization, Machine Learning, R, Python",147/13,137/23,74/86,114/46,96/64,134/26,141/19,85/75,66/94,71/89,142/18
+33,Deborah Rodriguez,4,Software Development,"Software Design Patterns, Version Control, Python, Java, C#",13/147,69/91,104/56,83/77,18/142,50/110,83/77,30/130,138/22,0/160,96/64
+34,Joshua Rivera,4,Machine Learning,"Deep Learning, TensorFlow, Scikit-learn, PyTorch, Python",117/43,119/41,105/55,43/117,139/21,124/36,6/154,64/96,12/148,149/11,54/106
+35,Sarah Poole,4,Cybersecurity,"Cryptography, Incident Response, Compliance, Network Security, Threat Analysis",3/157,36/124,102/58,50/110,39/121,113/47,1/159,79/81,144/16,29/131,47/113
+36,Matthew Horton,3,Project Management,"Project Scheduling, Scrum, Stakeholder Management, Risk Management, Agile Methodologies",88/72,158/2,91/69,94/66,57/103,159/1,159/1,102/58,136/24,34/126,89/71
+37,Karla Simon,3,Machine Learning,"Scikit-learn, Deep Learning, PyTorch, Python, TensorFlow",29/131,14/146,131/29,39/121,69/91,48/112,116/44,106/54,28/132,141/19,124/36
+38,Andrew Armstrong,4,Data Science,"Machine Learning, Data Visualization, R, Python, Statistical Analysis",14/146,19/141,65/95,68/92,108/52,107/53,12/148,133/27,107/53,71/89,56/104
+39,Collin Wiley,5,Software Development,"Software Design Patterns, Python, Version Control, C#, Java",155/5,111/49,54/106,53/107,66/94,145/15,124/36,19/141,34/126,30/130,22/138
+40,James Lloyd,4,Project Management,"Risk Management, Scrum, Agile Methodologies, Project Scheduling, Stakeholder Management",86/74,153/7,62/98,56/104,90/70,141/19,97/63,135/25,43/117,131/29,40/120
+41,Michael Mendez,5,Machine Learning,"Python, PyTorch, TensorFlow, Scikit-learn, Deep Learning",90/70,107/53,12/148,27/133,65/95,39/121,160/0,18/142,130/30,48/112,50/110
+42,Melissa Becker,1,Cloud Computing,"AWS, Azure, DevOps, GCP, Cloud Architecture",100/60,84/76,32/128,45/115,86/74,100/60,85/75,119/41,24/136,20/140,26/134
+43,Jacob Hernandez,3,Data Science,"Python, Statistical Analysis, Data Visualization, Machine Learning, R",101/59,139/21,73/87,152/8,91/69,93/67,25/135,54/106,149/11,138/22,24/136
+44,Steven Ferrell,4,Machine Learning,"Scikit-learn, TensorFlow, Deep Learning, Python, PyTorch",85/75,62/98,10/150,141/19,16/144,77/83,88/72,4/156,20/140,103/57,41/119
+45,Elizabeth Ortega,5,Machine Learning,"TensorFlow, Deep Learning, Scikit-learn, Python, PyTorch",117/43,37/123,93/67,114/46,89/71,76/84,4/156,1/159,93/67,82/78,3/157
+46,Ryan Leon,5,Machine Learning,"Python, TensorFlow, Deep Learning, PyTorch, Scikit-learn",125/35,38/122,66/94,131/29,112/48,24/136,71/89,24/136,157/3,29/131,115/45
+47,Adam Duncan,2,Machine Learning,"Python, PyTorch, Scikit-learn, TensorFlow, Deep Learning",27/133,30/130,38/122,13/147,160/0,84/76,111/49,129/31,41/119,50/110,35/125
+48,Hannah Peck,5,Project Management,"Scrum, Agile Methodologies, Risk Management, Project Scheduling, Stakeholder Management",85/75,133/27,117/43,40/120,31/129,55/105,133/27,124/36,132/28,105/55,37/123
+49,Matthew Evans,1,Cybersecurity,"Network Security, Threat Analysis, Compliance, Incident Response, Cryptography",7/153,11/149,28/132,91/69,107/53,43/117,43/117,101/59,35/125,39/121,7/153
+50,Shannon Anderson,5,Machine Learning,"Deep Learning, Python, Scikit-learn, TensorFlow, PyTorch",58/102,79/81,122/38,82/78,22/138,89/71,138/22,94/66,91/69,60/100,35/125
+51,Joseph Wilson,4,Project Management,"Scrum, Project Scheduling, Risk Management, Agile Methodologies, Stakeholder Management",92/68,22/138,71/89,129/31,92/68,110/50,58/102,152/8,134/26,43/117,44/116
+52,Daniel Watkins,1,Software Development,"Java, Software Design Patterns, Python, C#, Version Control",63/97,3/157,32/128,95/65,92/68,136/24,36/124,92/68,77/83,24/136,98/62
+53,Linda Reeves,2,Cybersecurity,"Cryptography, Network Security, Threat Analysis, Incident Response, Compliance",83/77,118/42,144/16,29/131,125/35,50/110,106/54,81/79,85/75,77/83,116/44
+54,Donna Hunter,1,Data Science,"Statistical Analysis, R, Data Visualization, Python, Machine Learning",65/95,83/77,67/93,57/103,30/130,82/78,84/76,77/83,134/26,136/24,150/10
+55,Michael Taylor,1,Machine Learning,"PyTorch, TensorFlow, Deep Learning, Python, Scikit-learn",11/149,62/98,148/12,3/157,34/126,110/50,121/39,13/147,36/124,113/47,151/9
+56,Devin Jones,1,Machine Learning,"Python, PyTorch, Deep Learning, TensorFlow, Scikit-learn",138/22,149/11,103/57,137/23,58/102,70/90,39/121,149/11,127/33,127/33,74/86
+57,Patrick Coleman PhD,2,Software Development,"C#, Version Control, Java, Software Design Patterns, Python",128/32,107/53,105/55,145/15,62/98,121/39,103/57,149/11,81/79,68/92,96/64
+58,Eric Davidson,2,Machine Learning,"TensorFlow, Deep Learning, Scikit-learn, PyTorch, Python",77/83,113/47,128/32,27/133,94/66,12/148,133/27,134/26,148/12,61/99,85/75
+59,Jason Mahoney,4,Project Management,"Stakeholder Management, Risk Management, Project Scheduling, Scrum, Agile Methodologies",96/64,151/9,86/74,133/27,91/69,78/82,17/143,71/89,11/149,117/43,142/18
+60,Christine Massey,4,Cybersecurity,"Cryptography, Incident Response, Compliance, Threat Analysis, Network Security",59/101,72/88,70/90,19/141,29/131,122/38,7/153,151/9,145/15,17/143,94/66
+61,David Reyes MD,3,Cybersecurity,"Network Security, Compliance, Incident Response, Threat Analysis, Cryptography",71/89,119/41,95/65,16/144,159/1,15/145,132/28,149/11,85/75,14/146,147/13
+62,Rebecca Moss,5,Cybersecurity,"Threat Analysis, Network Security, Cryptography, Compliance, Incident Response",99/61,97/63,2/158,95/65,97/63,57/103,77/83,128/32,55/105,70/90,87/73
+63,Sandra Martin,4,Cybersecurity,"Cryptography, Network Security, Threat Analysis, Compliance, Incident Response",14/146,110/50,112/48,141/19,99/61,117/43,86/74,125/35,17/143,63/97,106/54
+64,Julia Glass,4,Cloud Computing,"AWS, Azure, Cloud Architecture, DevOps, GCP",157/3,112/48,40/120,135/25,125/35,75/85,41/119,10/150,28/132,84/76,141/19
+65,Rachel Bowers,2,Project Management,"Project Scheduling, Risk Management, Stakeholder Management, Scrum, Agile Methodologies",102/58,0/160,123/37,68/92,62/98,142/18,80/80,117/43,118/42,105/55,15/145
+66,Samantha Sanders,1,Software Development,"Java, Version Control, Python, C#, Software Design Patterns",57/103,86/74,46/114,23/137,159/1,13/147,29/131,153/7,82/78,116/44,86/74
+67,Katie Howe,3,Software Development,"Software Design Patterns, Version Control, Java, C#, Python",53/107,18/142,70/90,31/129,160/0,42/118,103/57,95/65,15/145,40/120,111/49
+68,Harold Hays,1,Project Management,"Scrum, Stakeholder Management, Risk Management, Agile Methodologies, Project Scheduling",90/70,116/44,16/144,25/135,43/117,81/79,6/154,78/82,103/57,160/0,22/138
+69,Jennifer Davis,3,Cloud Computing,"DevOps, GCP, Azure, Cloud Architecture, AWS",113/47,157/3,117/43,65/95,151/9,115/45,137/23,22/138,41/119,12/148,52/108
+70,Brandy Cline,5,Data Science,"Data Visualization, Statistical Analysis, Machine Learning, Python, R",85/75,120/40,139/21,34/126,137/23,123/37,152/8,15/145,125/35,59/101,54/106
+71,Douglas Williams,5,Cloud Computing,"Cloud Architecture, Azure, AWS, DevOps, GCP",15/145,5/155,1/159,131/29,124/36,14/146,29/131,95/65,39/121,146/14,3/157
+72,John Woods,4,Cybersecurity,"Threat Analysis, Incident Response, Compliance, Network Security, Cryptography",112/48,59/101,135/25,122/38,57/103,97/63,72/88,16/144,86/74,149/11,18/142
+73,Natasha Conley,2,Software Development,"Java, Python, Software Design Patterns, C#, Version Control",19/141,121/39,59/101,98/62,140/20,130/30,147/13,119/41,69/91,103/57,122/38
+74,Shelly Oconnor,1,Data Science,"Statistical Analysis, Data Visualization, R, Machine Learning, Python",106/54,17/143,92/68,0/160,110/50,156/4,40/120,53/107,141/19,142/18,90/70
+75,Rebecca Austin,3,Data Science,"Machine Learning, Statistical Analysis, Python, Data Visualization, R",114/46,33/127,54/106,2/158,72/88,141/19,68/92,43/117,67/93,11/149,74/86
+76,Debbie Underwood,1,Data Science,"Data Visualization, R, Python, Machine Learning, Statistical Analysis",2/158,151/9,138/22,98/62,88/72,129/31,22/138,68/92,114/46,142/18,119/41
+77,Benjamin Collins,3,Data Science,"Python, Data Visualization, Statistical Analysis, Machine Learning, R",121/39,79/81,41/119,39/121,30/130,9/151,39/121,149/11,40/120,134/26,132/28
+78,Peter Gray,1,Software Development,"Java, Version Control, Software Design Patterns, Python, C#",64/96,157/3,148/12,141/19,83/77,16/144,27/133,107/53,100/60,142/18,79/81
+79,Brittney Garner,4,Cloud Computing,"AWS, Azure, DevOps, Cloud Architecture, GCP",124/36,6/154,41/119,156/4,54/106,111/49,78/82,95/65,149/11,31/129,94/66
+80,Emily Hall,5,Software Development,"C#, Version Control, Software Design Patterns, Python, Java",139/21,22/138,88/72,116/44,91/69,31/129,87/73,31/129,32/128,15/145,131/29
+81,Brent Lawson,1,Project Management,"Agile Methodologies, Stakeholder Management, Risk Management, Project Scheduling, Scrum",13/147,27/133,115/45,154/6,19/141,62/98,128/32,32/128,34/126,103/57,86/74
+82,Jamie Gonzalez,1,Cybersecurity,"Network Security, Compliance, Threat Analysis, Cryptography, Incident Response",125/35,26/134,19/141,95/65,108/52,82/78,99/61,71/89,7/153,41/119,135/25
+83,Amy Short,1,Data Science,"Python, Machine Learning, Data Visualization, R, Statistical Analysis",142/18,4/156,95/65,4/156,0/160,138/22,126/34,60/100,100/60,88/72,116/44
+84,Karen Jackson,4,Cloud Computing,"DevOps, Azure, GCP, Cloud Architecture, AWS",78/82,26/134,159/1,17/143,61/99,149/11,156/4,84/76,155/5,103/57,148/12
+85,Joshua Miller,3,Machine Learning,"Scikit-learn, Python, Deep Learning, PyTorch, TensorFlow",139/21,24/136,10/150,29/131,63/97,1/159,88/72,64/96,105/55,114/46,41/119
+86,Amber Phillips,2,Software Development,"Software Design Patterns, Version Control, C#, Java, Python",6/154,115/45,158/2,30/130,30/130,54/106,51/109,106/54,103/57,112/48,73/87
+87,Marissa Gillespie,5,Cybersecurity,"Incident Response, Cryptography, Network Security, Threat Analysis, Compliance",51/109,15/145,88/72,138/22,129/31,65/95,138/22,103/57,63/97,30/130,33/127
+88,Ruth Adams,4,Software Development,"Version Control, Java, Python, C#, Software Design Patterns",126/34,104/56,145/15,22/138,156/4,3/157,5/155,52/108,15/145,138/22,37/123
+89,Michael Watkins,3,Software Development,"Java, C#, Version Control, Software Design Patterns, Python",126/34,24/136,109/51,121/39,3/157,74/86,123/37,88/72,61/99,130/30,121/39
+90,Susan Mendez,3,Data Science,"Statistical Analysis, Python, Data Visualization, R, Machine Learning",104/56,104/56,72/88,24/136,100/60,64/96,47/113,66/94,70/90,22/138,128/32
+91,Adrian Garner,3,Cybersecurity,"Compliance, Network Security, Threat Analysis, Cryptography, Incident Response",53/107,152/8,153/7,139/21,0/160,44/116,49/111,104/56,13/147,98/62,43/117
+92,Michelle Reilly,4,Cloud Computing,"Cloud Architecture, Azure, DevOps, AWS, GCP",48/112,99/61,14/146,75/85,83/77,48/112,16/144,52/108,79/81,135/25,22/138
+93,John Stevenson,2,Software Development,"Software Design Patterns, Java, C#, Version Control, Python",82/78,127/33,86/74,160/0,62/98,88/72,29/131,47/113,66/94,155/5,38/122
+94,Isabella Hendrix,3,Cybersecurity,"Incident Response, Compliance, Network Security, Threat Analysis, Cryptography",23/137,95/65,159/1,43/117,132/28,116/44,19/141,117/43,123/37,16/144,29/131
+95,Elizabeth Taylor,5,Machine Learning,"PyTorch, Python, Deep Learning, TensorFlow, Scikit-learn",129/31,8/152,13/147,47/113,27/133,49/111,75/85,101/59,116/44,30/130,70/90
+96,John Smith,2,Machine Learning,"Scikit-learn, PyTorch, Python, TensorFlow, Deep Learning",87/73,55/105,55/105,125/35,63/97,141/19,11/149,120/40,99/61,129/31,16/144
+97,Raymond Christian,5,Cloud Computing,"Azure, GCP, AWS, Cloud Architecture, DevOps",7/153,122/38,133/27,100/60,10/150,144/16,0/160,52/108,137/23,13/147,49/111
+98,Eric Ortiz,5,Project Management,"Stakeholder Management, Risk Management, Scrum, Project Scheduling, Agile Methodologies",67/93,18/142,6/154,54/106,58/102,158/2,61/99,149/11,0/160,78/82,138/22
+99,Gail Brown MD,3,Cloud Computing,"Azure, AWS, DevOps, Cloud Architecture, GCP",42/118,50/110,122/38,7/153,137/23,160/0,140/20,152/8,38/122,113/47,87/73
+100,Henry Vazquez,5,Project Management,"Risk Management, Stakeholder Management, Agile Methodologies, Project Scheduling, Scrum",77/83,9/151,5/155,89/71,47/113,129/31,117/43,62/98,131/29,25/135,30/130
