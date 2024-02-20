@@ -55,3 +55,27 @@ def extract_text_with_pytesseract(list_dict_final_images):
 
 text_with_pytesseract = extract_text_with_pytesseract(convert_pdf_to_images)
 print(text_with_pytesseract)
+
+
+from easyocr import Reader
+
+# Load model for the English language
+language_reader = Reader(["en"])
+
+def extract_text_with_easyocr(list_dict_final_images):
+    
+    image_list = [list(data.values())[0] for data in list_dict_final_images]
+    image_content = []
+    
+    for index, image_bytes in enumerate(image_list):
+        
+        image = Image.open(BytesIO(image_bytes))
+        raw_text = language_reader.readtext(image)
+        raw_text = " ".join([res[1] for res in raw_text])
+                       
+        image_content.append(raw_text)
+    
+    return "\n".join(image_content)
+
+text_with_easy_ocr = extract_text_with_easyocr(convert_pdf_to_images)
+print(text_with_easy_ocr)
