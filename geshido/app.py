@@ -124,21 +124,18 @@ def main():
     if "task_descriptions" not in st.session_state:
         st.session_state.task_descriptions = []
 
-
     with st.expander("Describe the challenge/project", expanded=True):
         task_description = st.text_area("Description", key="task_description")
         expected_output = st.text_input(f"Expected Output", key=f"expected_output")
         if st.button("Submit", key="add_task"):
             if task_description and expected_output:
                 st.session_state.task_descriptions.append(task_description)
-                task = Task(
-                    description=task_description,
-                    expected_output=expected_output,
-                )
+                tasks = [Task(description=td, expected_output=eo) for td, eo in st.session_state.task_descriptions]
+                
                 st.success("Task added")
                 with st.spinner("Working..."):
                     project_crew = Crew(
-                        tasks=task,
+                        tasks=tasks,
                         agents=st.session_state.agents,
                         manager_llm=llm,
                         process=Process.hierarchical
