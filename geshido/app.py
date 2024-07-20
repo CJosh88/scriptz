@@ -125,29 +125,27 @@ def main():
         st.session_state.task_descriptions = []
 
     if st.session_state.agents:
-        # for agent in st.session_state.agents:
-            with st.expander(f"Describe challenge/project", expanded=True):
-                task_description = st.text_area(f"Description", key=f"task_description")
-                # expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{agent.role}")
+        with st.expander("Describe the challenge/project", expanded=True):
+            task_description = st.text_area("Description", key="task_description")
+            if st.button("Submit", key="add_task"):
+                if task_description:
+                    st.session_state.task_descriptions.append(task_description)
+                    st.success("Task added")
 
-                if st.button(f"Submit", key=f"add_task"):
-                    if task_description: # and expected_output:
-                        st.session_state.task_descriptions.append(task_description)
-                        st.success(f"Task added for {agent.role}")
-
-                        tasks = [
-                            Task(description=st.session_state.task_descriptions)
-                        ]
-                        project_crew = Crew(
-                            tasks=tasks,
-                            agents=st.session_state.agents,
-                            manager_llm=llm,
-                            process=Process.hierarchical
-                        )
-                        final = project_crew.kickoff()
-                        result = f"## Here is the Final Result \n\n {final}"
-                        st.session_state.messages.append({"role": "assistant", "content": result})
-                        st.chat_message("assistant").write(result)
+    if st.button("Run Tasks", key="run_tasks"):
+        tasks = st.session_state.task_descriptions
+        
+        project_crew = Crew(
+            tasks=tasks,
+            agents=st.session_state.agents,
+            manager_llm=llm,
+            process=Process.hierarchical
+        )
+        final = project_crew.kickoff()
+        result = f"## Here is the Final Result \n\n {final}"
+        st.session_state.messages.append({"role": "assistant", "content": result})
+        st.chat_message("assistant").write(result)
 
 if __name__ == "__main__":
     main()
+
