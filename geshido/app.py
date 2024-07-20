@@ -17,9 +17,10 @@ if openai_api_key:
 
 # Initialize LLM only if the API key is provided
 if openai_api_key:
-    llm = ChatOpenAI(openai_api_key=openai_api_key,model="gpt-4o",
-    temperature=0,
-    max_tokens=10000)
+    llm = ChatOpenAI(openai_api_key=openai_api_key,
+                     model="gpt-4o-mini",
+                     temperature=0,
+                     max_tokens=None)
 
 class MyCustomHandler(BaseCallbackHandler):
 
