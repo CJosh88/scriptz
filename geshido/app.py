@@ -132,18 +132,19 @@ def main():
                 st.session_state.task_descriptions.append((task_description, expected_output))
                 tasks = [Task(description=task_description, expected_output=expected_output)]
                 
-                st.success("Task added")
-                with st.spinner("Working..."):
-                    project_crew = Crew(
-                        tasks=tasks,
-                        agents=st.session_state.agents,
-                        manager_llm=llm,
-                        process=Process.hierarchical
-                    )
-                    final = project_crew.kickoff()
-                    result = f"## Here is the Final Result \n\n {final}"
-                    st.session_state.messages.append({"role": "assistant", "content": result})
-                    st.chat_message("assistant").write(result)
+                st.warning("Working...")
+                
+                project_crew = Crew(
+                    tasks=tasks,
+                    agents=st.session_state.agents,
+                    manager_llm=llm,
+                    process=Process.hierarchical
+                )
+                final = project_crew.kickoff()
+                result = f"## Here is the Final Result \n\n {final}"
+                st.session_state.messages.append({"role": "assistant", "content": result})
+                st.chat_message("assistant").write(result)
+                
                 st.success("Task complete")
 
 if __name__ == "__main__":
