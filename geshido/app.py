@@ -3,6 +3,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import os
+import random
 import streamlit as st
 from crewai import Crew, Process, Agent, Task
 from langchain_core.callbacks import BaseCallbackHandler
@@ -18,10 +19,23 @@ if openai_api_key:
 else:
     llm = None
 
+# List of avatars
+avatar_urls = [
+    "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150647.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150659.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150664.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150843.png"
+]
+
+# Randomly assign avatars to agents
+random.shuffle(avatar_urls)
+
 class MyCustomHandler(BaseCallbackHandler):
 
-    def __init__(self, agent_name: str) -> None:
+    def __init__(self, agent_name: str, avatar_url: str) -> None:
         self.agent_name = agent_name
+        self.avatar_url = avatar_url
 
     def on_chain_start(
         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
@@ -31,13 +45,13 @@ class MyCustomHandler(BaseCallbackHandler):
 
     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
-        st.chat_message(self.agent_name).write(outputs['output'])
+        st.chat_message(self.agent_name, avatar=self.avatar_url).write(outputs['output'])
 
 def define_agents(llm):
     if not llm:
         st.error("Please provide a valid OpenAI API key.")
         return []
-    
+
     product_owner = Agent(
         role='Product Owner',
         backstory='''You are a product owner responsible for managing the product backlog and ensuring it aligns with business strategy.
@@ -46,7 +60,7 @@ def define_agents(llm):
         ''',
         goal="Create and refine the product backlog, ensuring it aligns with business needs and stakeholder expectations. Generate high-quality user stories, epics, and backlog items that drive product success.",
         llm=llm,
-        callbacks=[MyCustomHandler("Product Owner")]
+        callbacks=[MyCustomHandler("Product Owner", avatar_urls[0])]
     )
 
     solution_architect = Agent(
@@ -57,7 +71,7 @@ def define_agents(llm):
         ''',
         goal="Design and document technical solutions through artifacts like solution designs, BRDs, and technical specifications. Ensure these solutions align with business needs and drive product innovation.",
         llm=llm,
-        callbacks=[MyCustomHandler("Solution Architect")]
+        callbacks=[MyCustomHandler("Solution Architect", avatar_urls[1])]
     )
 
     designer = Agent(
@@ -68,7 +82,7 @@ def define_agents(llm):
         ''',
         goal="Create high-quality wireframes, prototypes, and visual designs that meet business needs and delight stakeholders. Ensure designs are user-centric and align with product goals.",
         llm=llm,
-        callbacks=[MyCustomHandler("Designer")]
+        callbacks=[MyCustomHandler("Designer", avatar_urls[2])]
     )
 
     developer = Agent(
@@ -79,7 +93,7 @@ def define_agents(llm):
         ''',
         goal="Write high-quality code that meets the requirements outlined in user stories and tasks. Ensure code is testable, maintainable, and aligns with the overall product vision.",
         llm=llm,
-        callbacks=[MyCustomHandler("Developer")]
+        callbacks=[MyCustomHandler("Developer", avatar_urls[3])]
     )
 
     scrum_master = Agent(
@@ -90,13 +104,13 @@ def define_agents(llm):
         ''',
         goal="Facilitate agile processes, ensure Scrum framework adherence, and drive continuous improvement in the Scrum team. Generate artifacts like sprint backlogs, burndown charts, and increment definitions to support team efficiency.",
         llm=llm,
-        callbacks=[MyCustomHandler("Scrum Master")]
+        callbacks=[MyCustomHandler("Scrum Master", avatar_urls[4])]
     )
 
     return [product_owner, solution_architect, designer, developer, scrum_master]
 
 def main():
-    st.title("💬 AI project assistants/agents")
+    st.title("💬 CrewAI Writing Studio")
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "What tasks do you want us to perform?"}]
@@ -111,31 +125,29 @@ def main():
         st.session_state.task_descriptions = []
 
     if st.session_state.agents:
-        for agent in st.session_state.agents:
-            with st.expander(f"Define Task for {agent.role}", expanded=True):
-                task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{agent.role}")
-                expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{agent.role}")
+        # for agent in st.session_state.agents:
+            with st.expander(f"Describe challenge/project", expanded=True):
+                task_description = st.text_area(f"Description", key=f"task_description")
+                # expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{agent.role}")
 
-                if st.button(f"Add Task for {agent.role}", key=f"add_task_{agent.role}"):
-                    if task_description and expected_output:
-                        st.session_state.task_descriptions.append((task_description, agent, expected_output))
+                if st.button(f"Submit", key=f"add_task"):
+                    if task_description # and expected_output:
+                        st.session_state.task_descriptions.append(task_description)
                         st.success(f"Task added for {agent.role}")
 
-        if st.button("Run Tasks"):
-            tasks = [
-                Task(description=td, agent=a, expected_output=eo)
-                for td, a, eo in st.session_state.task_descriptions
-            ]
-            project_crew = Crew(
-                tasks=tasks,
-                agents=st.session_state.agents,
-                manager_llm=llm,
-                process=Process.hierarchical
-            )
-            final = project_crew.kickoff()
-            result = f"## Here is the Final Result \n\n {final}"
-            st.session_state.messages.append({"role": "assistant", "content": result})
-            st.chat_message("assistant").write(result)
+                        tasks = [
+                            Task(description=st.session_state.task_descriptions
+                        ]
+                        project_crew = Crew(
+                            tasks=tasks,
+                            agents=st.session_state.agents,
+                            manager_llm=llm,
+                            process=Process.hierarchical
+                        )
+                        final = project_crew.kickoff()
+                        result = f"## Here is the Final Result \n\n {final}"
+                        st.session_state.messages.append({"role": "assistant", "content": result})
+                        st.chat_message("assistant").write(result)
 
 if __name__ == "__main__":
     main()
