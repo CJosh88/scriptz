@@ -2,3 +2,4 @@ streamlit
 crewai
 langchain-core
 langchain-openai
+sqlite3 >= 3.35.0
