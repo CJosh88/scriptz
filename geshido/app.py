@@ -132,7 +132,7 @@ def main():
         if st.button("Submit", key="add_task"):
             if task_description and expected_output:
                 st.session_state.task_descriptions.append((task_description, expected_output))
-                tasks = [Task(description=task_description, expected_output=expected_output)]
+                tasks = [Task(description=str(task_description), expected_output=str(expected_output))]
                 
                 st.warning("Working...")
                 
