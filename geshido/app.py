@@ -129,7 +129,7 @@ def main():
         expected_output = st.text_input(f"Expected Output", key=f"expected_output")
         if st.button("Submit", key="add_task"):
             if task_description and expected_output:
-                st.session_state.task_descriptions.append((task_description, agent, expected_output))
+                st.session_state.task_descriptions.append((task_description, expected_output))
                 tasks = [Task(description=td, expected_output=eo) for td, eo in st.session_state.task_descriptions]
                 
                 st.success("Task added")
