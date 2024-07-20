@@ -96,7 +96,7 @@ def define_agents(llm):
     return [product_owner, solution_architect, designer, developer, scrum_master]
 
 def main():
-    st.title("💬 CrewAI Writing Studio")
+    st.title("💬 AI project assistants/agents")
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "What tasks do you want us to perform?"}]
@@ -104,26 +104,31 @@ def main():
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
 
-    agents = define_agents(llm)
+    if "agents" not in st.session_state:
+        st.session_state.agents = define_agents(llm)
 
-    if agents and st.button("Define Tasks"):
-        task_descriptions = []
-        for agent in agents:
+    if "task_descriptions" not in st.session_state:
+        st.session_state.task_descriptions = []
+
+    if st.session_state.agents:
+        for agent in st.session_state.agents:
             with st.expander(f"Define Task for {agent.role}", expanded=True):
                 task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{agent.role}")
                 expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{agent.role}")
 
-                if task_description and expected_output:
-                    task_descriptions.append((task_description, agent, expected_output))
-        
+                if st.button(f"Add Task for {agent.role}", key=f"add_task_{agent.role}"):
+                    if task_description and expected_output:
+                        st.session_state.task_descriptions.append((task_description, agent, expected_output))
+                        st.success(f"Task added for {agent.role}")
+
         if st.button("Run Tasks"):
             tasks = [
                 Task(description=td, agent=a, expected_output=eo)
-                for td, a, eo in task_descriptions
+                for td, a, eo in st.session_state.task_descriptions
             ]
             project_crew = Crew(
                 tasks=tasks,
-                agents=agents,
+                agents=st.session_state.agents,
                 manager_llm=llm,
                 process=Process.hierarchical
             )
