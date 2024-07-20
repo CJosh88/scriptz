@@ -1,8 +1,12 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import os
 import streamlit as st
 from crewai import Crew, Process, Agent, Task
 from langchain_core.callbacks import BaseCallbackHandler
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import Any, Dict
 from langchain_openai import ChatOpenAI
 
 # Sidebar for API key input
@@ -55,26 +59,28 @@ def main():
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "What blog post do you want us to write?"}]
-    
+
+    if "task_descriptions" not in st.session_state:
+        st.session_state.task_descriptions = []
+
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
 
     agents = define_agents()
 
     if st.button("Define Tasks"):
-        task_descriptions = []
         for i, agent in enumerate(agents):
             with st.expander(f"Define Task for {agent.role}", expanded=True):
                 task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{i}")
                 expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{i}")
 
                 if task_description and expected_output:
-                    task_descriptions.append((task_description, agent, expected_output))
+                    st.session_state.task_descriptions.append((task_description, agent, expected_output))
         
         if st.button("Run Tasks"):
             tasks = [
                 Task(description=td, agent=a, expected_output=eo)
-                for td, a, eo in task_descriptions
+                for td, a, eo in st.session_state.task_descriptions
             ]
             project_crew = Crew(
                 tasks=tasks,
