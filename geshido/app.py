@@ -118,6 +118,9 @@ def main():
 
     if "agents" not in st.session_state:
         st.session_state.agents = define_agents(llm)
+        if not st.session_state.agents:
+            st.error("No agents were defined. Please check the OpenAI API key.")
+            return
 
     if "task_descriptions" not in st.session_state:
         st.session_state.task_descriptions = []
@@ -152,6 +155,8 @@ def main():
                     st.success("Task complete")
                 except IndexError as e:
                     st.error(f"An error occurred: {e}")
+                    st.error(f"Agents: {st.session_state.agents}")
+                    st.error(f"Tasks: {tasks}")
 
 if __name__ == "__main__":
     main()
