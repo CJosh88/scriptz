@@ -136,7 +136,7 @@ def main():
                         st.success(f"Task added for {agent.role}")
 
                         tasks = [
-                            Task(description=st.session_state.task_descriptions
+                            Task(description=st.session_state.task_descriptions)
                         ]
                         project_crew = Crew(
                             tasks=tasks,
