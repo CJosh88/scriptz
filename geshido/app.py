@@ -131,7 +131,7 @@ def main():
                 # expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{agent.role}")
 
                 if st.button(f"Submit", key=f"add_task"):
-                    if task_description # and expected_output:
+                    if task_description: # and expected_output:
                         st.session_state.task_descriptions.append(task_description)
                         st.success(f"Task added for {agent.role}")
 
