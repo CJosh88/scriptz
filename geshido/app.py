@@ -124,18 +124,18 @@ def main():
     if "task_descriptions" not in st.session_state:
         st.session_state.task_descriptions = []
 
-    if st.session_state.agents:
-        with st.expander("Describe the challenge/project", expanded=True):
-            task_description = st.text_area("Description", key="task_description")
-            expected_output = st.text_input(f"Expected Output", key=f"expected_output")
-            if st.button("Submit", key="add_task"):
-                if task_description and expected_output:
-                    st.session_state.task_descriptions.append(task_description)
-                    task = Task(
-                        description=task_description,
-                        expected_output=expected_output,
-                    )
-                    st.success("Task added")
+
+    with st.expander("Describe the challenge/project", expanded=True):
+        task_description = st.text_area("Description", key="task_description")
+        expected_output = st.text_input(f"Expected Output", key=f"expected_output")
+        if st.button("Submit", key="add_task"):
+            if task_description and expected_output:
+                st.session_state.task_descriptions.append(task_description)
+                task = Task(
+                    description=task_description,
+                    expected_output=expected_output,
+                )
+                st.success("Task added")
 
     if st.button("Run Tasks", key="run_tasks"):
       
