@@ -110,7 +110,7 @@ def define_agents(llm):
     return [product_owner, solution_architect, designer, developer, scrum_master]
 
 def main():
-    st.title("💬 CrewAI Writing Studio")
+    st.title("💬 AI Project Agents/Assistants")
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "What tasks do you want us to perform?"}]
@@ -127,16 +127,20 @@ def main():
     if st.session_state.agents:
         with st.expander("Describe the challenge/project", expanded=True):
             task_description = st.text_area("Description", key="task_description")
+            expected_output = st.text_input(f"Expected Output", key=f"expected_output")
             if st.button("Submit", key="add_task"):
-                if task_description:
+                if task_description and expected_output:
                     st.session_state.task_descriptions.append(task_description)
+                    task = Task(
+                        description=task_description,
+                        expected_output=expected_output,
+                    )
                     st.success("Task added")
 
     if st.button("Run Tasks", key="run_tasks"):
-        tasks = st.session_state.task_descriptions
-        
+      
         project_crew = Crew(
-            tasks=tasks,
+            tasks=task,
             agents=st.session_state.agents,
             manager_llm=llm,
             process=Process.hierarchical
