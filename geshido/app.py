@@ -1,7 +1,3 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
 import os
 import random
 import streamlit as st
@@ -125,28 +121,32 @@ def main():
         st.session_state.task_descriptions = []
 
     if st.session_state.agents:
-        with st.expander("Describe the challenge/project", expanded=True):
-            task_description = st.text_area("Description", key="task_description")
-            if st.button("Submit", key="add_task"):
-                if task_description:
-                    st.session_state.task_descriptions.append(task_description)
-                    st.success("Task added")
+        for agent in st.session_state.agents:
+            with st.expander(f"Define Task for {agent.role}", expanded=True):
+                task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{agent.role}")
+                expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{agent.role}")
 
-    if st.button("Run Tasks", key="run_tasks"):
-        tasks = [
-            Task(description=td, agent=st.session_state.agents[0])  # Simplified for demo, you can assign appropriately
-            for td in st.session_state.task_descriptions
-        ]
-        project_crew = Crew(
-            tasks=tasks,
-            agents=st.session_state.agents,
-            manager_llm=llm,
-            process=Process.hierarchical
-        )
-        final = project_crew.kickoff()
-        result = f"## Here is the Final Result \n\n {final}"
-        st.session_state.messages.append({"role": "assistant", "content": result})
-        st.chat_message("assistant").write(result)
+                if st.button(f"Add Task for {agent.role}", key=f"add_task_{agent.role}"):
+                    if task_description and expected_output:
+                        st.session_state.task_descriptions.append((task_description, agent, expected_output))
+                        st.success(f"Task added for {agent.role}")
+
+        if st.session_state.task_descriptions:
+            if st.button("Run Tasks"):
+                tasks = [
+                    Task(description=td, agent=a, expected_output=eo)
+                    for td, a, eo in st.session_state.task_descriptions
+                ]
+                project_crew = Crew(
+                    tasks=tasks,
+                    agents=st.session_state.agents,
+                    manager_llm=llm,
+                    process=Process.hierarchical
+                )
+                final = project_crew.kickoff()
+                result = f"## Here is the Final Result \n\n {final}"
+                st.session_state.messages.append({"role": "assistant", "content": result})
+                st.chat_message("assistant").write(result)
 
 if __name__ == "__main__":
     main()
