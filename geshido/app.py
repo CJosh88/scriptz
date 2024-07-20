@@ -2,10 +2,54 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+import os
+import random
+import streamlit as st
 import logging
+from crewai import Crew, Process, Agent, Task
+from langchain_core.callbacks import BaseCallbackHandler
+from typing import Any, Dict
+from langchain_openai import ChatOpenAI
 
 # Setting up logging
 logging.basicConfig(level=logging.DEBUG)
+
+# Sidebar for API key input
+st.sidebar.title("Configuration")
+openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+if openai_api_key:
+    os.environ["OPENAI_API_KEY"] = openai_api_key
+    llm = ChatOpenAI(openai_api_key=openai_api_key)
+else:
+    llm = None
+
+# List of avatars
+avatar_urls = [
+    "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150647.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150659.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150664.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150843.png"
+]
+
+# Randomly assign avatars to agents
+random.shuffle(avatar_urls)
+
+class MyCustomHandler(BaseCallbackHandler):
+
+    def __init__(self, agent_name: str, avatar_url: str) -> None:
+        self.agent_name = agent_name
+        self.avatar_url = avatar_url
+
+    def on_chain_start(
+        self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
+    ) -> None:
+        st.session_state.messages.append({"role": "assistant", "content": inputs['input']})
+        st.chat_message("assistant").write(inputs['input'])
+
+    def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
+        st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
+        st.chat_message(self.agent_name, avatar=self.avatar_url).write(outputs['output'])
 
 def define_agents(llm):
     if not llm:
@@ -116,4 +160,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
