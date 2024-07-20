@@ -65,12 +65,18 @@ def main():
     if "task_descriptions" not in st.session_state:
         st.session_state["task_descriptions"] = []
 
+    if "define_tasks_clicked" not in st.session_state:
+        st.session_state["define_tasks_clicked"] = False
+
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
 
     agents = define_agents()
 
     if st.button("Define Tasks"):
+        st.session_state["define_tasks_clicked"] = True
+
+    if st.session_state["define_tasks_clicked"]:
         task_descriptions = []
         for i in range(5):
             if f"agent_{i}" in st.session_state:
