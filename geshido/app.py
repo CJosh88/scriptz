@@ -52,6 +52,8 @@ def define_agents():
                     callbacks=[MyCustomHandler(name)]
                 )
                 agents.append(agent)
+                # Save agent to session state
+                st.session_state[f"agent_{i}"] = {"name": name, "role": role, "backstory": backstory, "goal": goal}
     return agents
 
 def main():
@@ -61,7 +63,7 @@ def main():
         st.session_state["messages"] = [{"role": "assistant", "content": "What blog post do you want us to write?"}]
 
     if "task_descriptions" not in st.session_state:
-        st.session_state.task_descriptions = []
+        st.session_state["task_descriptions"] = []
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
@@ -69,18 +71,36 @@ def main():
     agents = define_agents()
 
     if st.button("Define Tasks"):
-        for i, agent in enumerate(agents):
-            with st.expander(f"Define Task for {agent.role}", expanded=True):
-                task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{i}")
-                expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{i}")
+        task_descriptions = []
+        for i in range(5):
+            if f"agent_{i}" in st.session_state:
+                agent_data = st.session_state[f"agent_{i}"]
+                agent = Agent(
+                    role=agent_data["role"],
+                    backstory=agent_data["backstory"],
+                    goal=agent_data["goal"],
+                    llm=llm,
+                    callbacks=[MyCustomHandler(agent_data["name"])]
+                )
+                with st.expander(f"Define Task for {agent.role}", expanded=True):
+                    task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{i}")
+                    expected_output = st.text_input(f"Expected Output for {agent.role}", key=f"expected_output_{i}")
 
-                if task_description and expected_output:
-                    st.session_state.task_descriptions.append((task_description, agent, expected_output))
+                    if task_description and expected_output:
+                        task_descriptions.append((task_description, agent, expected_output))
+                        # Save task descriptions to session state
+                        st.session_state["task_descriptions"].append((task_description, agent_data, expected_output))
         
         if st.button("Run Tasks"):
             tasks = [
-                Task(description=td, agent=a, expected_output=eo)
-                for td, a, eo in st.session_state.task_descriptions
+                Task(description=td, agent=Agent(
+                    role=a["role"],
+                    backstory=a["backstory"],
+                    goal=a["goal"],
+                    llm=llm,
+                    callbacks=[MyCustomHandler(a["name"])]
+                ), expected_output=eo)
+                for td, a, eo in st.session_state["task_descriptions"]
             ]
             project_crew = Crew(
                 tasks=tasks,
@@ -95,3 +115,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
