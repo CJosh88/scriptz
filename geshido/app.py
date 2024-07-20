@@ -2,30 +2,20 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import sys
 import os
 import random
 import streamlit as st
-import logging
 from crewai import Crew, Process, Agent, Task
 from langchain_core.callbacks import BaseCallbackHandler
 from typing import Any, Dict
 from langchain_openai import ChatOpenAI
-
-# Setting up logging
-logging.basicConfig(level=logging.DEBUG)
 
 # Sidebar for API key input
 st.sidebar.title("Configuration")
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 if openai_api_key:
     os.environ["OPENAI_API_KEY"] = openai_api_key
-    llm = ChatOpenAI(openai_api_key=openai_api_key,
-                     model="gpt-4o",
-                     temperature=0,
-                     max_tokens=None,
-                     timeout=None,
-                     max_retries=2,)
+    llm = ChatOpenAI(openai_api_key=openai_api_key)
 else:
     llm = None
 
@@ -153,10 +143,6 @@ def main():
                 else:
                     st.error("LLM initialization failed. Please check the OpenAI API key.")
                     return
-                
-                # Adding debug logging
-                logging.debug(f'Tasks: {tasks}')
-                logging.debug(f'Agents: {st.session_state.agents}')
 
                 try:
                     final = project_crew.kickoff()
@@ -166,7 +152,6 @@ def main():
                     st.success("Task complete")
                 except IndexError as e:
                     st.error(f"An error occurred: {e}")
-                    logging.error(f"Error during kickoff: {e}")
 
 if __name__ == "__main__":
     main()
