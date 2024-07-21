@@ -112,6 +112,7 @@ def define_agents():
                     backstory=backstory,
                     goal=goal,
                     llm=llm,
+                    max_iter=3,
                     #tools=tools,  # Include tools here
                     callbacks=[MyCustomHandler(role)]
                 )
