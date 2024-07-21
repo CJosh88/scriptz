@@ -182,8 +182,8 @@ def main():
                 llm=llm,
                 full_output=True,
                 memory=True,
-                process=Process.sequential,
-                planning=True
+                process=Process.hierarchical,
+                #planning=True
             )
 
             final = project_crew.kickoff()
