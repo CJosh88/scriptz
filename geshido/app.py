@@ -184,6 +184,8 @@ def main():
                 process=Process.hierarchical
             )
 
+            final = project_crew.kickoff()
+
             result = f"## Here is the Final Result \n\n {final}"
             st.session_state.messages.append({"role": "assistant", "content": result})
             st.chat_message("assistant").write(result)
