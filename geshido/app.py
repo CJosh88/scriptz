@@ -138,7 +138,7 @@ def main():
     followup = """Great, now define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": opening}]
+        st.session_state["messages"] = [{"role": "assistant", "content": ""}]
 
     if "task_descriptions" not in st.session_state:
         st.session_state["task_descriptions"] = []
@@ -146,8 +146,8 @@ def main():
     if "define_tasks_clicked" not in st.session_state:
         st.session_state["define_tasks_clicked"] = False
 
+    st.session_state["messages"] = [{"role": "assistant", "content": opening}]
     for msg in st.session_state.messages:
-        #st.chat_message(msg["role"]).write(msg["content"])
         st.chat_message(msg["role"]).write(stream_data(opening))
 
     st.write('')
