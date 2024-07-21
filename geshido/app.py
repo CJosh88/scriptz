@@ -147,6 +147,8 @@ def main():
                     role=agent_data["role"],
                     backstory=agent_data["backstory"],
                     goal=agent_data["goal"],
+                    max_iter=3,
+                    verbose=False,
                     llm=llm,
                     callbacks=[MyCustomHandler(agent_data["role"])]
                 )
