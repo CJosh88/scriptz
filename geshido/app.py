@@ -12,6 +12,7 @@ from typing import Any, Dict
 from langchain_openai import ChatOpenAI
 from crewai_tools import WebsiteSearchTool
 import base64
+from PIL import Image
 
 # page config
 st.set_page_config(page_title='Geshidocon Agent Demo', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
