@@ -161,8 +161,7 @@ def main():
       full_response = ""
       for chunk in assistant_response.split('!'):
           full_response += chunk + " "
-          time.sleep(0.04)
-
+          time.sleep(0.08)
           # Add a blinking cursor to simulate typing
           message_placeholder.markdown(full_response + "▌")
 
