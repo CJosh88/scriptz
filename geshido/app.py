@@ -162,8 +162,7 @@ def main():
     if st.session_state["define_tasks_clicked"]:
       
         st.session_state.messages.append({"role": "assistant", "content": followup})
-        for msg in st.session_state.messages:
-          st.chat_message(msg["role"]).write(stream_data(followup))
+        st.chat_message(stream_data(followup))
       
         task_descriptions = []
         for i in range(3):
