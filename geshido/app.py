@@ -137,6 +137,10 @@ def main():
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
 
+    st.write('')
+    st.write('')
+    st.write('')
+
     agents = define_agents()
        
     if st.button("Define Tasks"):
