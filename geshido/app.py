@@ -13,20 +13,6 @@ from langchain_openai import ChatOpenAI
 from crewai_tools import WebsiteSearchTool
 import base64
 
-main_bg = "/bk.jpg"
-main_bg_ext = "jpg"
-
-st.markdown(
-    f"""
-    <style>
-    .reportview-container {{
-        background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()})
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Sidebar for API key input
 st.sidebar.title("Configuration")
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
