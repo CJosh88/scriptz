@@ -160,17 +160,38 @@ def main():
                         # Save task descriptions to session state
                         st.session_state["task_descriptions"].append((task_description, agent_data, expected_output))
         
+        # if st.button("Run Tasks"):
+        #     tasks = [
+        #         Task(description=td, agent=Agent(
+        #             role=a["role"],
+        #             backstory=a["backstory"],
+        #             goal=a["goal"],
+        #             llm=llm,
+        #             callbacks=[MyCustomHandler(a["role"], avatar_urls[0])]
+        #         ), expected_output=eo)
+        #         for td, a, eo in st.session_state["task_descriptions"]
+        #     ]
+        
         if st.button("Run Tasks"):
+            avatar_index = 0  # Initialize the counter
+        
             tasks = [
-                Task(description=td, agent=Agent(
-                    role=a["role"],
-                    backstory=a["backstory"],
-                    goal=a["goal"],
-                    llm=llm,
-                    callbacks=[MyCustomHandler(a["role"], avatar_urls[0])]
-                ), expected_output=eo)
+                Task(
+                    description=td,
+                    agent=Agent(
+                        role=a["role"],
+                        backstory=a["backstory"],
+                        goal=a["goal"],
+                        llm=llm,
+                        callbacks=[MyCustomHandler(a["role"], avatar_urls[avatar_index % 5])]
+                    ),
+                    expected_output=eo
+                )
                 for td, a, eo in st.session_state["task_descriptions"]
             ]
+        
+            avatar_index = (avatar_index + 1) % 5  # Increment and cycle the counter
+            
             project_crew = Crew(
                 tasks=tasks,
                 agents=agents,
