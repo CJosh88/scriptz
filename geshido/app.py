@@ -11,6 +11,21 @@ from langchain_core.callbacks import BaseCallbackHandler
 from typing import Any, Dict
 from langchain_openai import ChatOpenAI
 from crewai_tools import WebsiteSearchTool
+import base64
+
+main_bg = "bk.jpg"
+main_bg_ext = "jpg"
+
+st.markdown(
+    f"""
+    <style>
+    .reportview-container {{
+        background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()})
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Sidebar for API key input
 st.sidebar.title("Configuration")
@@ -94,7 +109,7 @@ class MyCustomHandler(BaseCallbackHandler):
 
 def define_agents():
     agents = []
-    for i in range(2):
+    for i in range(3):
         with st.expander(f"Define Agent {i+1}", expanded=(i == 0)):
             role = st.text_input(f"Agent {i+1} Role", key=f"role_{i}")
             backstory = st.text_area(f"Agent {i+1} Backstory", key=f"backstory_{i}")
@@ -146,7 +161,7 @@ def main():
 
     if st.session_state["define_tasks_clicked"]:
         task_descriptions = []
-        for i in range(2):
+        for i in range(3):
             if f"agent_{i}" in st.session_state:
                 agent_data = st.session_state[f"agent_{i}"]
                 agent = Agent(
