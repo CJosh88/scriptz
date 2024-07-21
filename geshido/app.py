@@ -166,7 +166,7 @@ def define_agents():
 
 def main():
     
-    set_jpg_as_page_bg("geshido/bk.jpg")
+    set_jpg_as_page_bg("geshido/bk2.jpg")
     
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
