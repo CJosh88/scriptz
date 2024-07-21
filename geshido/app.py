@@ -25,8 +25,8 @@ st.set_page_config(page_title='Geshidocon Agent Demo',
                   )
 
 # Sidebar for API key input
-st.sidebar.title("Set OpenAI API Key")
-openai_api_key = st.sidebar.text_input("paste here", type="password")
+st.sidebar.title("Configuration")
+openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 if openai_api_key:
     os.environ["OPENAI_API_KEY"] = openai_api_key
 
