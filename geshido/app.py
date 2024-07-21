@@ -25,38 +25,22 @@ if openai_api_key:
                      max_tokens=None)
 
 # List of avatars
-avatar_urls = [
-    "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
-    "https://cdn-icons-png.flaticon.com/128/4150/4150647.png",
-    "https://cdn-icons-png.flaticon.com/128/4150/4150659.png",
-    "https://cdn-icons-png.flaticon.com/128/4150/4150664.png",
-    "https://cdn-icons-png.flaticon.com/128/4150/4150843.png"
-]
+# avatar_urls = [
+#     "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
+#     "https://cdn-icons-png.flaticon.com/128/4150/4150647.png",
+#     "https://cdn-icons-png.flaticon.com/128/4150/4150659.png",
+#     "https://cdn-icons-png.flaticon.com/128/4150/4150664.png",
+#     "https://cdn-icons-png.flaticon.com/128/4150/4150843.png"
+# ]
 
 
 # Randomly assign avatars to agents
 random.shuffle(avatar_urls)
 
-# class MyCustomHandler(BaseCallbackHandler):
-
-#     def __init__(self, agent_name: str) -> None:
-#         self.agent_name = agent_name
-
-#     def on_chain_start(
-#         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
-#     ) -> None:
-#         st.session_state.messages.append({"role": "assistant", "content": inputs['input']})
-#         st.chat_message("assistant").write(inputs['input'])
-
-#     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
-#         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
-#         st.chat_message(self.agent_name).write(outputs['output'])
-
 class MyCustomHandler(BaseCallbackHandler):
 
-    def __init__(self, agent_name: str, avatar_url: str) -> None:
+    def __init__(self, agent_name: str) -> None:
         self.agent_name = agent_name
-        self.avatar_url = avatar_url
 
     def on_chain_start(
         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
@@ -66,7 +50,23 @@ class MyCustomHandler(BaseCallbackHandler):
 
     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
-        st.chat_message(self.agent_name, avatar=self.avatar_url).write(outputs['output'])
+        st.chat_message(self.agent_name).write(outputs['output'])
+
+# class MyCustomHandler(BaseCallbackHandler):
+
+#     def __init__(self, agent_name: str, avatar_url: str) -> None:
+#         self.agent_name = agent_name
+#         self.avatar_url = avatar_url
+
+#     def on_chain_start(
+#         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
+#     ) -> None:
+#         st.session_state.messages.append({"role": "assistant", "content": inputs['input']})
+#         st.chat_message("assistant").write(inputs['input'])
+
+#     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
+#         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
+#         st.chat_message(self.agent_name, avatar=self.avatar_url).write(outputs['output'])
 
 # def define_agents():
 #     agents = []
@@ -99,19 +99,19 @@ def define_agents():
             goal = st.text_input(f"Agent {i+1} Goal", key=f"goal_{i}")
 
             if role and backstory and goal:
-                # Initialize the specific tool if the role is "product owner"
-                tools = []
-                if role.lower() == "product owner":
-                    tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/10-tips-creating-agile-product-roadmap/')
-                    tools.append(tool_roadmap)
+                # # Initialize the specific tool if the role is "product owner"
+                # tools = []
+                # if role.lower() == "product owner":
+                #     tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/10-tips-creating-agile-product-roadmap/')
+                #     tools.append(tool_roadmap)
 
                 agent = Agent(
                     role=role,
                     backstory=backstory,
                     goal=goal,
                     llm=llm,
-                    tools=tools,  # Include tools here
-                    callbacks=[MyCustomHandler(role, avatar_urls[i])]
+                    #tools=tools,  # Include tools here
+                    callbacks=[MyCustomHandler(role)]
                 )
 
                 agents.append(agent)
@@ -149,7 +149,7 @@ def main():
                     backstory=agent_data["backstory"],
                     goal=agent_data["goal"],
                     llm=llm,
-                    callbacks=[MyCustomHandler(agent_data["role"], avatar_urls[i])]
+                    callbacks=[MyCustomHandler(agent_data["role"])]
                 )
                 with st.expander(f"Define Task for {agent.role}", expanded=True):
                     task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{i}")
@@ -160,37 +160,37 @@ def main():
                         # Save task descriptions to session state
                         st.session_state["task_descriptions"].append((task_description, agent_data, expected_output))
         
-        # if st.button("Run Tasks"):
-        #     tasks = [
-        #         Task(description=td, agent=Agent(
-        #             role=a["role"],
-        #             backstory=a["backstory"],
-        #             goal=a["goal"],
-        #             llm=llm,
-        #             callbacks=[MyCustomHandler(a["role"], avatar_urls[0])]
-        #         ), expected_output=eo)
-        #         for td, a, eo in st.session_state["task_descriptions"]
-        #     ]
-        
         if st.button("Run Tasks"):
-            avatar_index = 0  # Initialize the counter
-        
             tasks = [
-                Task(
-                    description=td,
-                    agent=Agent(
-                        role=a["role"],
-                        backstory=a["backstory"],
-                        goal=a["goal"],
-                        llm=llm,
-                        callbacks=[MyCustomHandler(a["role"], avatar_urls[avatar_index % 5])]
-                    ),
-                    expected_output=eo
-                )
+                Task(description=td, agent=Agent(
+                    role=a["role"],
+                    backstory=a["backstory"],
+                    goal=a["goal"],
+                    llm=llm,
+                    callbacks=[MyCustomHandler(a["role"])]
+                ), expected_output=eo)
                 for td, a, eo in st.session_state["task_descriptions"]
             ]
         
-            avatar_index = (avatar_index + 1) % 5  # Increment and cycle the counter
+        # if st.button("Run Tasks"):
+        #     avatar_index = 0  # Initialize the counter
+        
+        #     tasks = [
+        #         Task(
+        #             description=td,
+        #             agent=Agent(
+        #                 role=a["role"],
+        #                 backstory=a["backstory"],
+        #                 goal=a["goal"],
+        #                 llm=llm,
+        #                 callbacks=[MyCustomHandler(a["role"], avatar_urls[avatar_index % 5])]
+        #             ),
+        #             expected_output=eo
+        #         )
+        #         for td, a, eo in st.session_state["task_descriptions"]
+        #     ]
+        
+        #     avatar_index = (avatar_index + 1) % 5  # Increment and cycle the counter
             
             project_crew = Crew(
                 tasks=tasks,
