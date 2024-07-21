@@ -216,7 +216,7 @@ def main():
                     backstory=a["backstory"],
                     goal=a["goal"],
                     llm=llm,
-                    callbacks=[MyCustomHandler(a["role"])]
+                    #callbacks=[MyCustomHandler(a["role"])]
                 ), expected_output=eo)
                 for td, a, eo in st.session_state["task_descriptions"]
             ]
