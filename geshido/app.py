@@ -123,7 +123,7 @@ def main():
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": "Describe your product strategy below"}]
+        st.session_state["messages"] = [{"role": "assistant", "content": "First, let' create your AI product team"}]
 
     if "task_descriptions" not in st.session_state:
         st.session_state["task_descriptions"] = []
