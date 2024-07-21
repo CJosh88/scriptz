@@ -13,6 +13,9 @@ from langchain_openai import ChatOpenAI
 from crewai_tools import WebsiteSearchTool
 import base64
 
+# page config
+st.set_page_config(page_title='Geshidocon Agent Demo', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+
 # Sidebar for API key input
 st.sidebar.title("Configuration")
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
@@ -155,8 +158,6 @@ def define_agents():
 
 def main():
     
-    st.set_page_config(page_title='Geshidocon Agent Demo', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
-
     set_jpg_as_page_bg('bk.jpg')
     
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
