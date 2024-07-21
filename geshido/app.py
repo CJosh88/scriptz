@@ -149,7 +149,7 @@ def main():
                     backstory=agent_data["backstory"],
                     goal=agent_data["goal"],
                     llm=llm,
-                    callbacks=[MyCustomHandler(agent_data["role"])]
+                    callbacks=[MyCustomHandler(agent_data["role"], avatar_urls[i])]
                 )
                 with st.expander(f"Define Task for {agent.role}", expanded=True):
                     task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{i}")
