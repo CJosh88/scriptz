@@ -15,7 +15,14 @@ import base64
 from PIL import Image
 
 # page config
-st.set_page_config(page_title='Geshidocon Agent Demo', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title='Geshidocon Agent Demo',
+                   page_icon=None,
+                   layout="centered",
+                   initial_sidebar_state="auto",
+                   menu_items={
+                    'Reach out to us': 'https://www.iqbusiness.net/ai-lab'
+                   }
+                  )
 
 # Sidebar for API key input
 st.sidebar.title("Configuration")
