@@ -121,6 +121,8 @@ def main():
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
     st.empty()
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
+    st.empty()
+    st.empty()
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "First, let' create your AI product team"}]
