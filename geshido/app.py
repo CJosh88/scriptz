@@ -33,7 +33,7 @@ def get_base64_of_bin_file(bin_file):
     """
     function to read png file 
     ----------
-    bin_file: png -> the background image in local folder
+    bin_file: jpg -> the background image in local folder
     """
     with open(bin_file, 'rb') as f:
         data = f.read()
@@ -41,9 +41,9 @@ def get_base64_of_bin_file(bin_file):
 
 def set_jpg_as_page_bg(jpg_file):
     """
-    function to display png as bg
+    function to display jpg as bg
     ----------
-    jpg_file: png -> the background image in local folder
+    jpg_file: jpg -> the background image in local folder
     """
     bin_str = get_base64_of_bin_file(jpg_file)
     page_bg_img = '''
@@ -158,7 +158,7 @@ def define_agents():
 
 def main():
     
-    set_jpg_as_page_bg('/mount/src/scriptz/geshido/bk.jpg')
+    set_jpg_as_page_bg(r'/mount/src/scriptz/geshido/bk.jpg')
     
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
