@@ -146,8 +146,9 @@ def main():
     if "define_tasks_clicked" not in st.session_state:
         st.session_state["define_tasks_clicked"] = False
 
-    with st.chat_message("assistant"):
-        stream_data(opening)
+    for msg in st.session_state.messages:
+        #st.chat_message(msg["role"]).write(msg["content"])
+        st.chat_message(msg["role"]).write(stream_data(opening))
 
     st.write('')
     st.write('')
