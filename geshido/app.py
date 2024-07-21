@@ -159,7 +159,7 @@ def main():
   
       # Simulate stream of response with milliseconds delay
       full_response = ""
-      for chunk in assistant_response.split('!'):
+      for chunk in assistant_response.split(r'(\s+)'):
           full_response += chunk + " "
           time.sleep(0.08)
           # Add a blinking cursor to simulate typing
