@@ -54,6 +54,11 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
+def stream_data(content):
+    for word in content.split(" "):
+        yield word + " "
+        time.sleep(0.02)
+      
 # List of avatars
 # avatar_urls = [
 #     "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
@@ -136,8 +141,10 @@ def main():
     if "define_tasks_clicked" not in st.session_state:
         st.session_state["define_tasks_clicked"] = False
 
-    for msg in st.session_state.messages:
-        st.chat_message(msg["role"]).write(msg["content"])
+    # for msg in st.session_state.messages:
+    #     st.chat_message(msg["role"]).write(msg["content"])
+    
+    st.chat_message('assistant',st.session_state["messages"])
 
     st.write('')
     st.write('')
