@@ -133,7 +133,7 @@ def main():
 
     opening = """First, let's create your AI product team! Start by entering the role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
-          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.
+          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.  
           
           Then, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
 
