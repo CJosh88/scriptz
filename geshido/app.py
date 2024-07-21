@@ -144,9 +144,7 @@ def main():
     # for msg in st.session_state.messages:
     #     st.chat_message(msg["role"]).write(msg["content"])
     
-    st.chat_message('assistant',"""First, let's create your AI product team! Start by entering the role
-          (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
-          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.""")
+    st.chat_message('assistant',"testttt")
 
     st.write('')
     st.write('')
