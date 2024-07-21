@@ -83,44 +83,6 @@ class MyCustomHandler(BaseCallbackHandler):
         st.chat_message(self.agent_name).write(outputs['output'])
 
 
-# class MyCustomHandler(BaseCallbackHandler):
-
-#     def __init__(self, agent_name: str, avatar_url: str) -> None:
-#         self.agent_name = agent_name
-#         self.avatar_url = avatar_url
-
-#     def on_chain_start(
-#         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
-#     ) -> None:
-#         st.session_state.messages.append({"role": "assistant", "content": inputs['input']})
-#         st.chat_message("assistant").write(inputs['input'])
-
-#     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
-#         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
-#         st.chat_message(self.agent_name, avatar=self.avatar_url).write(outputs['output'])
-
-# def define_agents():
-#     agents = []
-#     for i in range(2):
-#         with st.expander(f"Define Agent {i+1}", expanded=(i == 0)):
-#             # name = st.text_input(f"Agent {i+1} Name", key=f"name_{i}")
-#             role = st.text_input(f"Agent {i+1} Role", key=f"role_{i}")
-#             backstory = st.text_area(f"Agent {i+1} Backstory", key=f"backstory_{i}")
-#             goal = st.text_input(f"Agent {i+1} Goal", key=f"goal_{i}")
-
-#             if role and backstory and goal:
-#                 agent = Agent(
-#                     role=role,
-#                     backstory=backstory,
-#                     goal=goal,
-#                     llm=llm,
-#                     callbacks=[MyCustomHandler(role)]
-#                 )
-#                 agents.append(agent)
-#                 # Save agent to session state
-#                 st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal}
-#     return agents
-
 def define_agents():
     agents = []
     for i in range(3):
@@ -154,7 +116,7 @@ def define_agents():
 
 def main():
     
-    set_background("geshido/bk2.jpg")
+    set_background("geshido/bk.jpg")
     
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
