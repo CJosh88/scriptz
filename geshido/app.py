@@ -179,10 +179,10 @@ def main():
             project_crew = Crew(
                 tasks=tasks,
                 agents=agents,
-                manager_llm=llm,
+                llm=llm,
                 full_output=True,
                 memory=True,
-                process=Process.hierarchical,
+                process=Process.sequential,
                 planning=True
             )
 
