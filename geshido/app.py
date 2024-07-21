@@ -152,13 +152,16 @@ def main():
 
     with st.chat_message("assistant"):
       message_placeholder = st.empty()
-      assistant_response = "Hey there, I am Line 1 of text!  \nHey there, I am Line 2 of text."
+      assistant_response = """"First, let's create your AI product team! Start by entering the role
+          (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
+          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.
+          \nThen, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
   
       # Simulate stream of response with milliseconds delay
       full_response = ""
       for chunk in assistant_response.split('!'):
           full_response += chunk + " "
-          time.sleep(0.01)
+          time.sleep(0.04)
 
           # Add a blinking cursor to simulate typing
           message_placeholder.markdown(full_response + "▌")
