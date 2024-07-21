@@ -35,7 +35,7 @@ if openai_api_key:
 
 
 # Randomly assign avatars to agents
-random.shuffle(avatar_urls)
+# random.shuffle(avatar_urls)
 
 class MyCustomHandler(BaseCallbackHandler):
 
