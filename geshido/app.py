@@ -8,6 +8,7 @@ from crewai import Crew, Process, Agent, Task
 from langchain_core.callbacks import BaseCallbackHandler
 from typing import Any, Dict
 from langchain_openai import ChatOpenAI
+from crewai_tools import WebsiteSearchTool
 
 # Sidebar for API key input
 st.sidebar.title("Configuration")
@@ -37,33 +38,62 @@ class MyCustomHandler(BaseCallbackHandler):
         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
         st.chat_message(self.agent_name).write(outputs['output'])
 
+# def define_agents():
+#     agents = []
+#     for i in range(2):
+#         with st.expander(f"Define Agent {i+1}", expanded=(i == 0)):
+#             # name = st.text_input(f"Agent {i+1} Name", key=f"name_{i}")
+#             role = st.text_input(f"Agent {i+1} Role", key=f"role_{i}")
+#             backstory = st.text_area(f"Agent {i+1} Backstory", key=f"backstory_{i}")
+#             goal = st.text_input(f"Agent {i+1} Goal", key=f"goal_{i}")
+
+#             if role and backstory and goal:
+#                 agent = Agent(
+#                     role=role,
+#                     backstory=backstory,
+#                     goal=goal,
+#                     llm=llm,
+#                     callbacks=[MyCustomHandler(role)]
+#                 )
+#                 agents.append(agent)
+#                 # Save agent to session state
+#                 st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal}
+#     return agents
+
 def define_agents():
     agents = []
     for i in range(2):
         with st.expander(f"Define Agent {i+1}", expanded=(i == 0)):
-            # name = st.text_input(f"Agent {i+1} Name", key=f"name_{i}")
             role = st.text_input(f"Agent {i+1} Role", key=f"role_{i}")
             backstory = st.text_area(f"Agent {i+1} Backstory", key=f"backstory_{i}")
             goal = st.text_input(f"Agent {i+1} Goal", key=f"goal_{i}")
 
             if role and backstory and goal:
+                # Initialize the specific tool if the role is "product owner"
+                tools = []
+                if role.lower() == "product owner":
+                    tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/10-tips-creating-agile-product-roadmap/')
+                    tools.append(tool_roadmap)
+
                 agent = Agent(
                     role=role,
                     backstory=backstory,
                     goal=goal,
                     llm=llm,
+                    tools=tools,  # Include tools here
                     callbacks=[MyCustomHandler(role)]
                 )
+
                 agents.append(agent)
                 # Save agent to session state
                 st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal}
     return agents
 
 def main():
-    st.title("💬 AI Agents Demo")
+    st.title("💬 AI Agents - Product Roadmap and Backlog generation/simulation")
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": "Describe your business problem below"}]
+        st.session_state["messages"] = [{"role": "assistant", "content": "Describe your product strategy below"}]
 
     if "task_descriptions" not in st.session_state:
         st.session_state["task_descriptions"] = []
@@ -75,7 +105,7 @@ def main():
         st.chat_message(msg["role"]).write(msg["content"])
 
     agents = define_agents()
-
+       
     if st.button("Define Tasks"):
         st.session_state["define_tasks_clicked"] = True
 
