@@ -174,26 +174,7 @@ def main():
                 for td, a, eo in st.session_state["task_descriptions"]
             ]
         
-        # if st.button("Run Tasks"):
-        #     avatar_index = 0  # Initialize the counter
-        
-        #     tasks = [
-        #         Task(
-        #             description=td,
-        #             agent=Agent(
-        #                 role=a["role"],
-        #                 backstory=a["backstory"],
-        #                 goal=a["goal"],
-        #                 llm=llm,
-        #                 #callbacks=[MyCustomHandler(a["role"], avatar_urls[avatar_index % 5])]
-        #             ),
-        #             expected_output=eo
-        #         )
-        #         for td, a, eo in st.session_state["task_descriptions"]
-        #     ]
-        
-        #     avatar_index = (avatar_index + 1) % 5  # Increment and cycle the counter
-            
+           
             project_crew = Crew(
                 tasks=tasks,
                 agents=agents,
@@ -203,9 +184,9 @@ def main():
                 process=Process.hierarchical
             )
 
-                result = f"## Here is the Final Result \n\n {final}"
-                st.session_state.messages.append({"role": "assistant", "content": result})
-                st.chat_message("assistant").write(result)
+            result = f"## Here is the Final Result \n\n {final}"
+            st.session_state.messages.append({"role": "assistant", "content": result})
+            st.chat_message("assistant").write(result)
 
 if __name__ == "__main__":
     main()
