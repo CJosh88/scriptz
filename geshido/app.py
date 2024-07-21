@@ -26,6 +26,35 @@ if openai_api_key:
                      temperature=0,
                      max_tokens=None)
 
+def get_base64_of_bin_file(bin_file):
+    """
+    function to read png file 
+    ----------
+    bin_file: png -> the background image in local folder
+    """
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_jpg_as_page_bg(jpg_file):
+    """
+    function to display png as bg
+    ----------
+    jpg_file: png -> the background image in local folder
+    """
+    bin_str = get_base64_of_bin_file(jpg_file)
+    page_bg_img = '''
+    <style>
+    st.App {
+    background-image: url("data:image/jpg;base64,%s");
+    background-size: cover;
+    }
+    </style>
+    ''' % bin_str
+    
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    return
+
 # List of avatars
 # avatar_urls = [
 #     "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
@@ -125,6 +154,11 @@ def define_agents():
     return agents
 
 def main():
+    
+    st.set_page_config(page_title='Geshidocon Agent Demo, page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+
+    set_jpg_as_page_bg('bk.jpg')
+    
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
 
