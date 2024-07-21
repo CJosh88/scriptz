@@ -152,10 +152,10 @@ def main():
 
     with st.chat_message("assistant"):
       message_placeholder = st.empty()
-      assistant_response = """"First, let's create your AI product team! Start by entering the role
+      assistant_response = """First, enter your OpenAI API key in the sidebar on the left <--  \nThen, get started by creating your AI product team! Start by entering the role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
           personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.
-          \nThen, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
+          \Finally, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
   
       # Simulate stream of response with milliseconds delay
       full_response = ""
