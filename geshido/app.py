@@ -155,7 +155,7 @@ def define_agents():
 
 def main():
     
-    st.set_page_config(page_title='Geshidocon Agent Demo, page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+    st.set_page_config(page_title='Geshidocon Agent Demo', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 
     set_jpg_as_page_bg('bk.jpg')
     
