@@ -141,7 +141,7 @@ class StreamToExpander:
 
 def define_agents():
     agents = []
-    for i in range(4):
+    for i in range(2):
         with st.expander(f"Define Agent {i+1}", expanded=(i == 0)):
             role = st.text_input(f"Agent {i+1} Role", key=f"role_{i}")
             backstory = st.text_area(f"Agent {i+1} Backstory", key=f"backstory_{i}")
@@ -190,7 +190,7 @@ def main():
 
     if st.session_state["define_tasks_clicked"]:
         task_descriptions = []
-        for i in range(4):
+        for i in range(2):
             if f"agent_{i}" in st.session_state:
                 agent_data = st.session_state[f"agent_{i}"]
                 agent = Agent(
