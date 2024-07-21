@@ -13,7 +13,7 @@ from langchain_openai import ChatOpenAI
 from crewai_tools import WebsiteSearchTool
 import base64
 
-main_bg = "./bk.jpg"
+main_bg = "/bk.jpg"
 main_bg_ext = "jpg"
 
 st.markdown(
