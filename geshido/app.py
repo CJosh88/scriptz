@@ -3,6 +3,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import os
+import random
 import streamlit as st
 from crewai import Crew, Process, Agent, Task
 from langchain_core.callbacks import BaseCallbackHandler
@@ -23,10 +24,39 @@ if openai_api_key:
                      temperature=0,
                      max_tokens=None)
 
+# List of avatars
+avatar_urls = [
+    "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150647.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150659.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150664.png",
+    "https://cdn-icons-png.flaticon.com/128/4150/4150843.png"
+]
+
+
+# Randomly assign avatars to agents
+random.shuffle(avatar_urls)
+
+# class MyCustomHandler(BaseCallbackHandler):
+
+#     def __init__(self, agent_name: str) -> None:
+#         self.agent_name = agent_name
+
+#     def on_chain_start(
+#         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
+#     ) -> None:
+#         st.session_state.messages.append({"role": "assistant", "content": inputs['input']})
+#         st.chat_message("assistant").write(inputs['input'])
+
+#     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
+#         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
+#         st.chat_message(self.agent_name).write(outputs['output'])
+
 class MyCustomHandler(BaseCallbackHandler):
 
-    def __init__(self, agent_name: str) -> None:
+    def __init__(self, agent_name: str, avatar_url: str) -> None:
         self.agent_name = agent_name
+        self.avatar_url = avatar_url
 
     def on_chain_start(
         self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs: Any
@@ -36,7 +66,7 @@ class MyCustomHandler(BaseCallbackHandler):
 
     def on_chain_end(self, outputs: Dict[str, Any], **kwargs: Any) -> None:
         st.session_state.messages.append({"role": self.agent_name, "content": outputs['output']})
-        st.chat_message(self.agent_name).write(outputs['output'])
+        st.chat_message(self.agent_name, avatar=self.avatar_url).write(outputs['output'])
 
 # def define_agents():
 #     agents = []
@@ -62,7 +92,7 @@ class MyCustomHandler(BaseCallbackHandler):
 
 def define_agents():
     agents = []
-    for i in range(2):
+    for i in range(4):
         with st.expander(f"Define Agent {i+1}", expanded=(i == 0)):
             role = st.text_input(f"Agent {i+1} Role", key=f"role_{i}")
             backstory = st.text_area(f"Agent {i+1} Backstory", key=f"backstory_{i}")
@@ -111,7 +141,7 @@ def main():
 
     if st.session_state["define_tasks_clicked"]:
         task_descriptions = []
-        for i in range(2):
+        for i in range(4):
             if f"agent_{i}" in st.session_state:
                 agent_data = st.session_state[f"agent_{i}"]
                 agent = Agent(
