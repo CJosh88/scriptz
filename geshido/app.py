@@ -55,11 +55,7 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-def stream_data(content):
-    for word in content.split(" "):
-        yield word + " "
-        time.sleep(0.04)
-      
+
 # List of avatars
 # avatar_urls = [
 #     "https://cdn-icons-png.flaticon.com/128/4150/4150773.png",
@@ -131,11 +127,10 @@ def main():
     st.write('')
     st.write('')
 
-    opening = """First, let's create your AI product team! Start by entering the role
+    opening = """First, enter your OpenAI API key in the sidebar on the left <--  \n\nThen, get started by creating your AI product team! Start by entering the role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
-          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.            
-          <br>
-          Then, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
+          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.
+          \n\nFinally, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
 
 
     if "messages" not in st.session_state:
@@ -152,16 +147,13 @@ def main():
 
     with st.chat_message("assistant"):
       message_placeholder = st.empty()
-      assistant_response = """First, enter your OpenAI API key in the sidebar on the left <--  \nThen, get started by creating your AI product team! Start by entering the role
-          (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
-          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.
-          \Finally, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
+      assistant_response = opening
   
       # Simulate stream of response with milliseconds delay
       full_response = ""
       for chunk in re.split(r'(\s+)', assistant_response):
           full_response += chunk + " "
-          time.sleep(0.01)
+          time.sleep(0.04)
           message_placeholder.markdown(full_response + "▌")
 
     st.write('')
