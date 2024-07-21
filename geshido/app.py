@@ -54,54 +54,6 @@ class MyCustomHandler(BaseCallbackHandler):
         st.chat_message(self.agent_name).write(outputs['output'])
 
 
-class StreamToExpander:
-    
-    def __init__(self, expander):
-        self.expander = expander
-        self.buffer = []
-        self.colors = ['red', 'green', 'blue', 'orange']  # Define a list of colors
-        self.color_index = 0  # Initialize color index
-
-    def write(self, data):
-        # Filter out ANSI escape codes using a regular expression
-        cleaned_data = re.sub(r'\x1B\[[0-9;]*[mK]', '', data)
-
-        # Check if the data contains 'task' information
-        task_match_object = re.search(r'\"task\"\s*:\s*\"(.*?)\"', cleaned_data, re.IGNORECASE)
-        task_match_input = re.search(r'task\s*:\s*([^\n]*)', cleaned_data, re.IGNORECASE)
-        task_value = None
-        if task_match_object:
-            task_value = task_match_object.group(1)
-        elif task_match_input:
-            task_value = task_match_input.group(1).strip()
-
-        if task_value:
-            st.toast(":robot_face: " + task_value)
-
-        # Check if the text contains the specified phrase and apply color
-        if "Entering new CrewAgentExecutor chain" in cleaned_data:
-            # Apply different color and switch color index
-            self.color_index = (self.color_index + 1) % len(self.colors)  # Increment color index and wrap around if necessary
-
-            cleaned_data = cleaned_data.replace("Entering new CrewAgentExecutor chain", f":{self.colors[self.color_index]}[Entering new CrewAgentExecutor chain]")
-
-        if "Product Owner" in cleaned_data:
-            # Apply different color 
-            cleaned_data = cleaned_data.replace("Product Owner", f":{self.colors[self.color_index]}[Product Owner]")
-        if "Scrum-master" in cleaned_data:
-            cleaned_data = cleaned_data.replace("Scrum-master", f":{self.colors[self.color_index]}[Scrum-master]")
-        if "Technical lead" in cleaned_data:
-            cleaned_data = cleaned_data.replace("Technical lead", f":{self.colors[self.color_index]}[Technical lead]")
-        if "Business stakeholder" in cleaned_data:
-            cleaned_data = cleaned_data.replace("Business stakeholder", f":{self.colors[self.color_index]}[Business stakeholder]")
-        if "Finished chain." in cleaned_data:
-            cleaned_data = cleaned_data.replace("Finished chain.", f":{self.colors[self.color_index]}[Finished chain.]")
-
-        self.buffer.append(cleaned_data)
-        if "\n" in data:
-            self.expander.markdown(''.join(self.buffer), unsafe_allow_html=True)
-            self.buffer = []
-
 # class MyCustomHandler(BaseCallbackHandler):
 
 #     def __init__(self, agent_name: str, avatar_url: str) -> None:
@@ -161,7 +113,7 @@ def define_agents():
                     goal=goal,
                     llm=llm,
                     #tools=tools,  # Include tools here
-                    #callbacks=[MyCustomHandler(role)]
+                    callbacks=[MyCustomHandler(role)]
                 )
 
                 agents.append(agent)
@@ -199,7 +151,7 @@ def main():
                     backstory=agent_data["backstory"],
                     goal=agent_data["goal"],
                     llm=llm,
-                    #callbacks=[MyCustomHandler(agent_data["role"])]
+                    callbacks=[MyCustomHandler(agent_data["role"])]
                 )
                 with st.expander(f"Define Task for {agent.role}", expanded=True):
                     task_description = st.text_area(f"Task Description for {agent.role}", key=f"task_description_{i}")
@@ -217,7 +169,7 @@ def main():
                     backstory=a["backstory"],
                     goal=a["goal"],
                     llm=llm,
-                    #callbacks=[MyCustomHandler(a["role"])]
+                    callbacks=[MyCustomHandler(a["role"])]
                 ), expected_output=eo)
                 for td, a, eo in st.session_state["task_descriptions"]
             ]
@@ -246,6 +198,8 @@ def main():
                 tasks=tasks,
                 agents=agents,
                 manager_llm=llm,
+                full_output=True,
+                memory=True,
                 process=Process.hierarchical
             )
 
