@@ -124,7 +124,7 @@ def define_agents():
     return agents
 
 def main():
-    st.title("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
+    st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
 
     if "messages" not in st.session_state:
