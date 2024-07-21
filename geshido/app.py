@@ -58,7 +58,7 @@ def set_background(png_file):
 def stream_data(content):
     for word in content.split(" "):
         yield word + " "
-        time.sleep(0.02)
+        time.sleep(0.04)
       
 # List of avatars
 # avatar_urls = [
@@ -146,9 +146,8 @@ def main():
     if "define_tasks_clicked" not in st.session_state:
         st.session_state["define_tasks_clicked"] = False
 
-    for msg in st.session_state.messages:
-        #st.chat_message(msg["role"]).write(msg["content"])
-        st.chat_message(msg["role"]).write(stream_data(opening))
+    with st.chat_message("assistant"):
+        stream_data(opening)
 
     st.write('')
     st.write('')
@@ -162,7 +161,8 @@ def main():
     if st.session_state["define_tasks_clicked"]:
       
         st.session_state.messages.append({"role": "assistant", "content": followup})
-        st.chat_message(stream_data(followup))
+        with st.chat_message("assistant"):
+          stream_data(followup)
       
         task_descriptions = []
         for i in range(3):
