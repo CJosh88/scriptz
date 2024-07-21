@@ -133,12 +133,13 @@ def main():
 
     opening = """First, let's create your AI product team! Start by entering the role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
-          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team."""
+          personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team.
+          
+          Then, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
 
-    followup = """Great, now define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": ""}]
+        st.session_state["messages"] = [{"role": "assistant", "content":opening}]
 
     if "task_descriptions" not in st.session_state:
         st.session_state["task_descriptions"] = []
@@ -146,7 +147,6 @@ def main():
     if "define_tasks_clicked" not in st.session_state:
         st.session_state["define_tasks_clicked"] = False
 
-    st.session_state["messages"] = [{"role": "assistant", "content": opening}]
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(stream_data(opening))
 
@@ -160,10 +160,6 @@ def main():
         st.session_state["define_tasks_clicked"] = True
 
     if st.session_state["define_tasks_clicked"]:
-      
-        st.session_state["messages"] = [{"role": "assistant", "content": followup}]
-        for msg in st.session_state.messages:
-            st.chat_message(msg["role"]).write(stream_data(followup))
       
         task_descriptions = []
         for i in range(3):
