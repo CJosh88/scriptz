@@ -119,6 +119,7 @@ def main():
     #set_background("geshido/bk.jpg")
     
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
+    st.empty()
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
 
     if "messages" not in st.session_state:
