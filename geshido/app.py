@@ -172,6 +172,10 @@ def main():
                         st.session_state["task_descriptions"].append((task_description, agent_data, expected_output))
         
         if st.button("Run Tasks"):
+
+            st.session_state.messages.append({"role": "assistant", "content": "blah blah blah"})
+            st.chat_message("assistant").write("blah blah blah")
+          
             tasks = [
                 Task(description=td, agent=Agent(
                     role=a["role"],
