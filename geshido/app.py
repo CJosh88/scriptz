@@ -135,6 +135,8 @@ def main():
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
           personalized [fictional] backstory, & overall goal, for each agent. You can create up to 3 AI agents in your product team."""
 
+    followup = """Great, now define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
+
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": opening}]
 
@@ -147,8 +149,6 @@ def main():
     for msg in st.session_state.messages:
         #st.chat_message(msg["role"]).write(msg["content"])
         st.chat_message(msg["role"]).write(stream_data(opening))
-    
-
 
     st.write('')
     st.write('')
@@ -161,8 +161,9 @@ def main():
 
     if st.session_state["define_tasks_clicked"]:
       
-        st.session_state.messages.append({"role": "assistant", "content": "blah blah blah"})
-        st.chat_message("assistant").write("blah blah blah")
+        st.session_state.messages.append({"role": "assistant", "content": followup})
+        for msg in st.session_state.messages:
+          st.chat_message(msg["role"]).write(stream_data(followup))
       
         task_descriptions = []
         for i in range(3):
