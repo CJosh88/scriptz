@@ -111,7 +111,7 @@ def define_agents():
                     goal=goal,
                     llm=llm,
                     tools=tools,  # Include tools here
-                    callbacks=[MyCustomHandler(role)]
+                    callbacks=[MyCustomHandler(role, avatar_urls[i])]
                 )
 
                 agents.append(agent)
