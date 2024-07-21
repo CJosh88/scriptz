@@ -17,7 +17,7 @@ from PIL import Image
 # page config
 st.set_page_config(page_title='Geshidocon Agent Demo',
                    page_icon=None,
-                   layout="centered",
+                   layout="wide",
                    initial_sidebar_state="auto",
                    menu_items={
                     'Get help': 'https://www.iqbusiness.net/ai-lab'
@@ -119,10 +119,11 @@ def main():
     #set_background("geshido/bk.jpg")
     
     st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
-    st.empty()
+    st.write('')
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
-    st.empty()
-    st.empty()
+    st.write('')
+    st.write('')
+    st.write('')
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "First, let' create your AI product team"}]
