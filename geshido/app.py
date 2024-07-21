@@ -126,7 +126,7 @@ def main():
     st.write('')
 
     if "messages" not in st.session_state:
-        st.session_state["messages"] = [{"role": "assistant", "content": "*First, let' create your AI product team*"}]
+        st.session_state["messages"] = [{"role": "assistant", "content": "**First, let' create your AI product team**"}]
 
     if "task_descriptions" not in st.session_state:
         st.session_state["task_descriptions"] = []
