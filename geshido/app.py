@@ -149,6 +149,10 @@ def main():
         st.session_state["define_tasks_clicked"] = True
 
     if st.session_state["define_tasks_clicked"]:
+      
+        st.session_state.messages.append({"role": "assistant", "content": "blah blah blah"})
+        st.chat_message("assistant").write("blah blah blah")
+      
         task_descriptions = []
         for i in range(3):
             if f"agent_{i}" in st.session_state:
@@ -172,9 +176,6 @@ def main():
                         st.session_state["task_descriptions"].append((task_description, agent_data, expected_output))
         
         if st.button("Run Tasks"):
-
-            st.session_state.messages.append({"role": "assistant", "content": "blah blah blah"})
-            st.chat_message("assistant").write("blah blah blah")
           
             tasks = [
                 Task(description=td, agent=Agent(
