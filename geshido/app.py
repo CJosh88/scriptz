@@ -247,14 +247,14 @@ def main():
                 manager_llm=llm,
                 process=Process.hierarchical
             )
-            final = project_crew.kickoff()
-            
+
             with st.expander("Processing!"):
                 sys.stdout = StreamToExpander(st)
+                final = project_crew.kickoff()        
             
-            result = f"## Here is the Final Result \n\n {final}"
-            st.session_state.messages.append({"role": "assistant", "content": result})
-            st.chat_message("assistant").write(result)
+                result = f"## Here is the Final Result \n\n {final}"
+                st.session_state.messages.append({"role": "assistant", "content": result})
+                st.chat_message("assistant").write(result)
 
 if __name__ == "__main__":
     main()
