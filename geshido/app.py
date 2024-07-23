@@ -142,19 +142,19 @@ def main():
     if "define_tasks_clicked" not in st.session_state:
         st.session_state["define_tasks_clicked"] = False
 
-    # for msg in st.session_state.messages:
-    #     st.chat_message(msg["role"]).write(stream_data(opening))
+    for msg in st.session_state.messages:
+        st.chat_message(msg["role"]).write(msg["content"])
 
-    with st.chat_message("assistant"):
-      message_placeholder = st.empty()
-      assistant_response = opening
+    # with st.chat_message("assistant"):
+    #   message_placeholder = st.empty()
+    #   assistant_response = opening
   
       # Simulate stream of response with milliseconds delay
-      full_response = ""
-      for chunk in re.split(r'(\s+)', assistant_response):
-          full_response += chunk + " "
-          time.sleep(0.04)
-          message_placeholder.markdown(full_response + "▌")
+      # full_response = ""
+      # for chunk in re.split(r'(\s+)', assistant_response):
+      #     full_response += chunk + " "
+      #     time.sleep(0.04)
+      #     message_placeholder.markdown(full_response + "▌")
 
     st.write('')
     st.write('')
