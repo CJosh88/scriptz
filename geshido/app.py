@@ -127,6 +127,8 @@ def main():
     st.write('')
     st.write('')
 
+    st.sidebar.write("test")
+
     opening = """Welcome! Let's get started by creating your AI product delivery team. First, enter your OpenAI API key in the sidebar on the left <--  \n\nThen enter the Role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
           Backstory, & overall (broad) Goal, for each agent. You can create up to 3 AI agents in your product team.
