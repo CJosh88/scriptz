@@ -126,17 +126,17 @@ def main():
     st.write('')
     st.write('')
     st.write('')
-
-    st.sidebar.write("test")
+ 
+    st.sidebar.write("Role: Specifies the agent's job within the crew, such as Product Owner or UI/UX Designer")
+    st.sidebar.write("Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew")
+    st.sidebar.write("Goal: Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew")
 
     opening = """Welcome! Let's get started by creating your AI product delivery team. First, enter your OpenAI API key in the sidebar on the left <--  \n\nThen enter the Role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
           Backstory, & overall (broad) Goal, for each agent. You can create up to 3 AI agents in your product team.
           \n\nFinally, define the tasks you want each of them to complete. Note that these tasks may be delegated by/to other members of your AI team.
-          \n\nMore about Roles, Backstories, and Goals:  \n\n  
           """
-
-
+  
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content":opening}]
 
@@ -148,15 +148,6 @@ def main():
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
-
-          #   \n\nRole: Specifies the agent's job within the crew, such as 'Product Owner' or 'UI/UX Designer'.  \n\n  
-          # Goal: Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew.  \n\n  
-          # Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew.  \n\n  
-
-
-    st.write("Role:Specifies the agent's job within the crew, such as Product Owner or UI/UX Designer")
-    st.write("Backstory:Provides depth to the agent's persona, enriching its motivations and engagements within the crew")
-    st.write("Goal:Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew")
 
     # with st.chat_message("assistant"):
     #   message_placeholder = st.empty()
