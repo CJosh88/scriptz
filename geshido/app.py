@@ -120,7 +120,7 @@ def main():
     
     #set_background("geshido/bk.jpg")
     
-    st.header("💬 Using AI Agents to generate/simulate product roadmap and backlog artefacts")
+    st.header("💬 Using AI Agents to assist in the product delivery lifecycle")
     st.write('')
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
     st.write('')
