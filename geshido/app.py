@@ -127,10 +127,16 @@ def main():
     st.write('')
     st.write('')
 
-    opening = """Welcome! Let's get started by creating your AI product delivery team. First, enter your OpenAI API key in the sidebar on the left <--  \n\Then enter the role
+    opening = """Welcome! Let's get started by creating your AI product delivery team. First, enter your OpenAI API key in the sidebar on the left <--  \n\Then enter the Role
           (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
-          personal [fictional] backstory, & overall (broad) goal, for each agent. You can create up to 3 AI agents in your product team.
-          \n\nFinally, define the tasks you want each of them to complete. Note that these tasks may be delegated to other members of your AI team."""
+          Backstory, & overall (broad) Goal, for each agent. You can create up to 3 AI agents in your product team.
+          \n\nFinally, define the tasks you want each of them to complete. Note that these tasks may be delegated by/to other members of your AI team.
+          \n\nMore about Roles, Backstories, and Goals:\n\n
+
+          Role: Specifies the agent's job within the crew, such as 'Product Owner' or 'UI/UX Designer'.\n\n
+          Goal: Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew.\n\
+          Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew.\n\
+          """
 
 
     if "messages" not in st.session_state:
