@@ -132,7 +132,7 @@ def main():
           Backstory, & overall (broad) Goal, for each agent. You can create up to 3 AI agents in your product team.
           \n\nFinally, define the tasks you want each of them to complete. Note that these tasks may be delegated by/to other members of your AI team.
           \n\nMore about Roles, Backstories, and Goals:  \n\n  
-          \n\nRole: Specifies the agent's job within the crew, such as 'Product Owner' or 'UI/UX Designer'.  \n\n\
+          \n\nRole: Specifies the agent's job within the crew, such as 'Product Owner' or 'UI/UX Designer'.  \n\n
           Goal: Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew.  \n\n
           Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew.  \n\n
           """
