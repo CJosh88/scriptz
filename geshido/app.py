@@ -152,7 +152,7 @@ def main():
           # Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew.  \n\n  
 
     with st.expander('Roles'):
-      st.write("Specifies the agent's job within the crew, such as 'Product Owner' or 'UI/UX Designer'"
+      st.write("Specifies the agent's job within the crew, such as 'Product Owner' or 'UI/UX Designer'")
 
     # with st.chat_message("assistant"):
     #   message_placeholder = st.empty()
