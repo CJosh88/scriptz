@@ -95,10 +95,10 @@ def define_agents():
 
             if role and backstory and goal:
                 # # Initialize the specific tool if the role is "product owner"
-                # tools = []
-                # if role.lower() == "product owner":
-                #     tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/10-tips-creating-agile-product-roadmap/')
-                #     tools.append(tool_roadmap)
+                tools = []
+                if role.lower() == "product owner":
+                    tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/prioritising-a-product-backlog-when-everything-is-important/')
+                    tools.append(tool_roadmap)
 
                 agent = Agent(
                     role=role,
@@ -107,13 +107,13 @@ def define_agents():
                     llm=llm,
                     max_iter=3,
                     verbose=False,
-                    #tools=tools,  # Include tools here
+                    tools=tools,  # Include tools here
                     callbacks=[MyCustomHandler(role)]
                 )
 
                 agents.append(agent)
                 # Save agent to session state
-                st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal}
+                st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal, "tool":tools}
     return agents
 
 def main():
@@ -182,6 +182,7 @@ def main():
                     max_iter=3,
                     verbose=False,
                     llm=llm,
+                    tools = agent_data["tool"],
                     callbacks=[MyCustomHandler(agent_data["role"])]
                 )
                 with st.expander(f"Define Task for {agent.role}", expanded=True):
