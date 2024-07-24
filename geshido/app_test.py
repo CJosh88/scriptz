@@ -33,7 +33,7 @@ if openai_api_key:
 
 # Initialize LLM only if the API key is provided
 if openai_api_key:
-    st.session_state.llm = ChatOpenAI(openai_api_key=openai_api_key,
+    st.session_state.llm = ChatOpenAI(openai_api_key=st.session_state["OPENAI_API_KEY"],
                      model="gpt-4o-mini",
                      temperature=0,
                      max_tokens=None)
@@ -95,10 +95,10 @@ def define_agents():
 
             if role and backstory and goal:
                 # # Initialize the specific tool if the role is "product owner"
-                tools = []
-                if role.lower() == "product owner":
-                    tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/prioritising-a-product-backlog-when-everything-is-important/')
-                    tools.append(tool_roadmap)
+                # tools = []
+                # if role.lower() == "product owner":
+                #     tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/prioritising-a-product-backlog-when-everything-is-important/')
+                #     tools.append(tool_roadmap)
 
                 agent = Agent(
                     role=role,
@@ -107,13 +107,13 @@ def define_agents():
                     llm= st.session_state.llm,
                     max_iter=3,
                     verbose=False,
-                    tools=tools,  # Include tools here
+                    # tools=tools,  # Include tools here
                     callbacks=[MyCustomHandler(role)]
                 )
 
                 agents.append(agent)
                 # Save agent to session state
-                st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal, "tool":tools}
+                st.session_state[f"agent_{i}"] = {"role": role, "backstory": backstory, "goal": goal}
     return agents
 
 def main():
