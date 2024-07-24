@@ -182,7 +182,7 @@ def main():
                     max_iter=3,
                     verbose=False,
                     llm=st.session_state.llm,
-                    tools = agent_data["tool"],
+                    # tools = agent_data["tool"],
                     callbacks=[MyCustomHandler(agent_data["role"])]
                 )
                 with st.expander(f"Define Task for {agent.role}", expanded=True):
