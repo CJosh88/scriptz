@@ -29,11 +29,11 @@ st.set_page_config(page_title='Geshidocon Agent Demo',
 st.sidebar.title("Configuration")
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 if openai_api_key:
-    os.environ["OPENAI_API_KEY"] = openai_api_key
+    st.session_state["OPENAI_API_KEY"] = openai_api_key
 
 # Initialize LLM only if the API key is provided
 if openai_api_key:
-    llm = ChatOpenAI(openai_api_key=openai_api_key,
+    st.session_state.llm = ChatOpenAI(openai_api_key=st.session_state["OPENAI_API_KEY"],
                      model="gpt-4o-mini",
                      temperature=0,
                      max_tokens=None)
@@ -97,17 +97,17 @@ def define_agents():
                 # # Initialize the specific tool if the role is "product owner"
                 # tools = []
                 # if role.lower() == "product owner":
-                #     tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/10-tips-creating-agile-product-roadmap/')
+                #     tool_roadmap = WebsiteSearchTool(website='https://www.romanpichler.com/blog/prioritising-a-product-backlog-when-everything-is-important/')
                 #     tools.append(tool_roadmap)
 
                 agent = Agent(
                     role=role,
                     backstory=backstory,
                     goal=goal,
-                    llm=llm,
+                    llm= st.session_state.llm,
                     max_iter=3,
                     verbose=False,
-                    #tools=tools,  # Include tools here
+                    # tools=tools,  # Include tools here
                     callbacks=[MyCustomHandler(role)]
                 )
 
@@ -120,19 +120,19 @@ def main():
     
     #set_background("geshido/bk.jpg")
     
-    st.header("💬 Using AI Agents to assist in the product delivery lifecycle")
+    st.header("💬 Using AI Agents in the product delivery lifecycle")
     st.write('')
     st.subheader('An IQbusiness AI Lab demo', divider='rainbow')
     st.write('')
     st.write('')
     st.write('')
  
-    st.sidebar.write("Role: Specifies the agent's job within the crew, such as Product Owner or UI/UX Designer")
+    st.sidebar.write("Role: Specifies the agent's job within the groupchat, such as the Client, Product Owner or UI/UX Designer")
     st.sidebar.write("Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew")
     st.sidebar.write("Goal: Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew")
 
     opening = """Welcome! Let's get started by creating your AI product delivery team. First, enter your OpenAI API key in the sidebar on the left <--  \n\nThen enter the Role
-          (e.g. Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
+          (e.g. Client, Product Owner, Scrum-master, Solutions Architect/Technical Lead,Lead UI/UX Designer, Lead Data Scientist),
           Backstory, & overall (broad) Goal, for each agent. You can create up to 3 AI agents in your product team.
           \n\nFinally, define the tasks you want each of them to complete. Note that these tasks may be delegated by/to other members of your AI team.
           """
@@ -181,7 +181,8 @@ def main():
                     goal=agent_data["goal"],
                     max_iter=3,
                     verbose=False,
-                    llm=llm,
+                    llm=st.session_state.llm,
+                    # tools = agent_data["tool"],
                     callbacks=[MyCustomHandler(agent_data["role"])]
                 )
                 with st.expander(f"Define Task for {agent.role}", expanded=True):
@@ -200,7 +201,7 @@ def main():
                     role=a["role"],
                     backstory=a["backstory"],
                     goal=a["goal"],
-                    llm=llm,
+                    llm=st.session_state.llm,
                     callbacks=[MyCustomHandler(a["role"])]
                 ), expected_output=eo)
                 for td, a, eo in st.session_state["task_descriptions"]
@@ -210,7 +211,7 @@ def main():
             project_crew = Crew(
                 tasks=tasks,
                 agents=agents,
-                manager_llm=llm,
+                manager_llm=st.session_state.llm,
                 full_output=True,
                 memory=True,
                 process=Process.hierarchical,
@@ -225,4 +226,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
