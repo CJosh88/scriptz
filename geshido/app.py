@@ -27,12 +27,12 @@ st.set_page_config(page_title='Geshidocon Agent Demo',
 
 # Sidebar for API key input
 st.sidebar.title("Configuration")
-openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
-if openai_api_key:
-    st.session_state["OPENAI_API_KEY"] = openai_api_key
+st.session_state["OPENAI_API_KEY"] = st.sidebar.text_input("OpenAI API Key", type="password")
+# if openai_api_key:
+#     st.session_state["OPENAI_API_KEY"] = openai_api_key
 
 # Initialize LLM only if the API key is provided
-if openai_api_key:
+if st.session_state["OPENAI_API_KEY"]:
     st.session_state.llm = ChatOpenAI(openai_api_key=st.session_state["OPENAI_API_KEY"],
                      model="gpt-4o-mini",
                      temperature=0,
