@@ -1,6 +1,0 @@
-streamlit
-crewai
-crewai[tools]
-langchain-core
-langchain-openai
-pysqlite3-binary
